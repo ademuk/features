@@ -13,7 +13,7 @@ class App extends Component {
   handleAddProjectClick = () => {
     const projects = this.state.projects;
     this.setState({
-      'projects': projects.concat([{
+      projects: projects.concat([{
         id: Math.random(),
         name: 'foo'
       }])
