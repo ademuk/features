@@ -1,9 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { render } from 'react-dom';
+
+import { createStore } from 'redux';
+import { browserHistory } from 'react-router';
+
+import Root from './containers/Root';
+import projectsReducer from './reducers'
 import './index.css';
 
-ReactDOM.render(
-  <App />,
+const store = createStore(projectsReducer);
+
+render(
+  <Root store={store} history={browserHistory} />,
   document.getElementById('root')
 );
