@@ -1,9 +1,17 @@
 import { combineReducers } from 'redux';
 
-function features(state = { projects: {} }, action) {
-  return state;
+function projects(state = [], action) {
+  switch (action.type) {
+    case "ADD_PROJECT":
+      return state.concat({
+        id: Math.random(),
+        name: action.name
+      });
+    default:
+      return state;
+  }
 }
 
 export default combineReducers({
-  features
+  projects
 });
