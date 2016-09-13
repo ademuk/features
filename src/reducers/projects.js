@@ -15,9 +15,9 @@ function byId(state = {}, action) {
 function list(state = [], action) {
   switch (action.type) {
     case "LOAD_PROJECTS":
-      return state.list.concat(action.projects);
+      return action.projects;
     case "CREATE_PROJECT":
-      return state.list.concat({
+      return state.concat({
         id: Math.random(),
         name: action.name
       });
