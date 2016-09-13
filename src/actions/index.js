@@ -5,10 +5,12 @@ const mockProjects = [
   }
 ];
 
-const mockProject = {
-  id: 'id1',
-  name: 'First loaded project',
-  description: 'foo'
+const mockProject = function (id) {
+  return {
+    id,
+    name: 'First loaded project',
+    description: 'foo'
+  };
 };
 
 export function loadProjects() {
@@ -29,7 +31,7 @@ export function loadProject(id) {
     setTimeout(() => {
       dispatch({
         type: 'LOAD_PROJECT',
-        project: mockProject
+        project: mockProject(id)
       });
     }, 500);
   };

@@ -17,7 +17,7 @@ class ProjectPage extends Component {
       {!project
         ? <h2>Loading</h2>
         : <div>
-            <h2>{project.name}</h2>
+            <h2>{project.id} - {project.name}</h2>
             <p>{project.description}</p>
           </div>
       }
