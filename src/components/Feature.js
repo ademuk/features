@@ -20,11 +20,14 @@ class Feature extends Component {
         <p>{feature.description}</p>
         <AceEditor
           value={this.state.text}
+          onChange={this.onChange}
+          minLines={15}
+          maxLines={300}
           mode="gherkin"
           theme="monokai"
-          height="300px"
-          onChange={this.onChange}>
-        </AceEditor>
+          setOptions={{useSoftTabs: true}}
+          tabSize={2}
+          editorProps={{$blockScrolling: true}} />
         <button onClick={this.save}>Save</button>
       </div>
     );
