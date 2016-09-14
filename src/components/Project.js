@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default function (props) {
-  const { project } = props;
+const Project = ({ project }) => {
   return (
     <div>
       <h2>{project.name}</h2>
       <p>{project.description}</p>
     </div>
   )
-}
+};
+
+Project.propTypes = {
+  project: PropTypes.object.isRequired
+};
+
+export default Project;

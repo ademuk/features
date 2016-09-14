@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
@@ -25,6 +25,11 @@ class ProjectPage extends Component {
     )
   }
 }
+
+ProjectPage.propTypes = {
+  loadProject: PropTypes.func.isRequired,
+  project: PropTypes.object
+};
 
 function mapStateToProps(state, ownProps) {
   return {

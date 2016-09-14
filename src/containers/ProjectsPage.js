@@ -14,7 +14,7 @@ class ProjectsPage extends Component {
     return (
       <div>
         <h2>Projects</h2>
-        <Projects projects={this.props.list} onCreateProject={this.createProject} />
+        <Projects projects={this.props.projects} onCreateProject={this.createProject} />
       </div>
     )
   }
@@ -26,11 +26,14 @@ class ProjectsPage extends Component {
 
 ProjectsPage.propTypes = {
   loadProjects: PropTypes.func.isRequired,
-  createProject: PropTypes.func.isRequired
+  createProject: PropTypes.func.isRequired,
+  projects: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
-  return state.projects;
+  return {
+    projects: state.projects.list
+  };
 }
 
 export default connect(mapStateToProps, {

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
 import { loadFeatures } from '../actions';
 import Features from '../components/Features';
 
-class FeaturePage extends Component {
+class FeaturesPage extends Component {
   componentWillMount() {
     const { projectId } = this.props.params;
     this.props.loadFeatures(projectId);
@@ -24,6 +24,11 @@ class FeaturePage extends Component {
   }
 }
 
+FeaturesPage.propTypes = {
+  loadFeatures: PropTypes.func.isRequired,
+  features: PropTypes.array
+};
+
 function mapStateToProps(state, ownProps) {
   const { projectId } = ownProps.params;
   return {
@@ -33,4 +38,4 @@ function mapStateToProps(state, ownProps) {
 
 export default connect(mapStateToProps, {
   loadFeatures
-})(FeaturePage)
+})(FeaturesPage)

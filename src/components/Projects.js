@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 function getProjectPath(id) {
   return `/project/${id}`;
 }
 
-function Projects(props) {
+const Projects = ({ projects, onCreateProject }) => {
   return (
     <div>
       <ol>
-        {props.projects.map(project => <li key={project.id}><Link to={getProjectPath(project.id)}>{project.name}</Link></li>)}
+        {projects.map(project => {
+          return (
+            <li key={project.id}>
+              <Link to={getProjectPath(project.id)}>{project.name}</Link>
+            </li>
+          )
+        })}
       </ol>
-      <button onClick={props.onCreateProject}>Add Project</button>
+      <button onClick={onCreateProject}>Add Project</button>
     </div>
   )
-}
+};
+
+Projects.propTypes = {
+  projects: PropTypes.array.isRequired,
+  onCreateProject: PropTypes.func.isRequired
+};
 
 export default Projects;

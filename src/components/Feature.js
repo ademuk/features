@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default function (props) {
-  const { feature } = props;
+const Feature = ({ feature }) => {
   return (
     <div>
       <h2>{feature.name}</h2>
@@ -9,4 +8,10 @@ export default function (props) {
       <textarea defaultValue={feature.text}></textarea>
     </div>
   );
-}
+};
+
+Feature.propTypes = {
+  feature: PropTypes.object.isRequired
+};
+
+export default Feature;

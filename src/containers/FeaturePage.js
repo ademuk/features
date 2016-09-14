@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
@@ -23,6 +23,11 @@ class FeaturePage extends Component {
     )
   }
 }
+
+FeaturePage.propTypes = {
+  loadFeature: PropTypes.func.isRequired,
+  feature: PropTypes.object
+};
 
 function mapStateToProps(state, ownProps) {
   const { projectId, featureId } = ownProps.params;

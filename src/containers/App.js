@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
@@ -14,6 +14,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 function mapStateToProps(state) {
   return state;
