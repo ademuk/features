@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 function getProjectPath(id) {
-  return `/projects/${id}`;
+  return `/project/${id}`;
 }
 
 function Projects(props) {

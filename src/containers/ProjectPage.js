@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { loadProject } from '../actions';
+import { loadProject, loadFeatures } from '../actions';
+import Project from '../components/Project';
 
 class ProjectPage extends Component {
 
   componentWillMount() {
     this.props.loadProject(this.props.params.projectId);
+    this.props.loadFeatures(this.props.params.projectId);
   }
 
   render() {
-    const { project } = this.props;
+    const { project, features } = this.props;
     return (
       <div>
-      {!project
-        ? <h2>Loading</h2>
-        : <div>
-            <h2>{project.id} - {project.name}</h2>
-            <p>{project.description}</p>
-          </div>
-      }
+        {!project
+          ? <h2>Loading</h2>
+          : <Project project={project} features={features} />
+        }
+        <div>{this.props.children}</div>
       </div>
     )
   }
@@ -33,5 +33,6 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps, {
-  loadProject
+  loadProject,
+  loadFeatures
 })(ProjectPage);

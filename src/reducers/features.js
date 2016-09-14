@@ -2,21 +2,24 @@ import { combineReducers } from 'redux';
 
 function byId(state = {}, action) {
   switch (action.type) {
-    case "LOAD_PROJECT":
+    case "LOAD_FEATURE":
       return {
         ...state,
-        [action.project.id]: action.project
+        [action.projectId + action.feature.id]: action.feature
       };
     default:
       return state;
   }
 }
 
-function list(state = [], action) {
+function listByProjectId(state = {}, action) {
   switch (action.type) {
-    case "LOAD_PROJECTS":
-      return action.projects;
-    case "CREATE_PROJECT":
+    case "LOAD_FEATURES":
+      return {
+        ...state,
+        [action.projectId]: action.features
+      };
+    case "CREATE_FEATURE":
       return state.concat({
         id: Math.random() + '',
         name: action.name
@@ -28,5 +31,5 @@ function list(state = [], action) {
 
 export default combineReducers({
   byId,
-  list
+  listByProjectId
 });
