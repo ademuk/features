@@ -24,7 +24,7 @@ class FeaturesPage extends Component {
   }
 
   createFeature = () => {
-    return this.props.createFeature('Feature ' + Math.random(), this.props.params.projectId);
+    return this.props.createFeature(this.props.params.projectId, 'Feature ' + Math.random());
   }
 }
 

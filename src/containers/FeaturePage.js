@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
-import { loadFeature } from '../actions';
+import { loadFeature, saveFeature } from '../actions';
 import Feature from '../components/Feature';
 
 class FeaturePage extends Component {
@@ -17,10 +17,15 @@ class FeaturePage extends Component {
       <div>
         {!feature
           ? <h2>Loading</h2>
-          : <Feature feature={feature}/>
+          : <Feature feature={feature} onSave={this.saveFeature} />
         }
       </div>
     )
+  }
+
+  saveFeature = (text) => {
+    const { projectId, featureId } = this.props.params;
+    this.props.saveFeature(projectId, featureId, text);
   }
 }
 
@@ -37,5 +42,6 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps, {
-  loadFeature
+  loadFeature,
+  saveFeature
 })(FeaturePage)

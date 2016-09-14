@@ -29,7 +29,7 @@ const mockFeature = function (id) {
     id,
     name: 'Feature A',
     description: 'Feature A description',
-    text: 'Feature: Feature A\n\nGiven When Then'
+    text: 'Feature: Feature A\n\nGiven I am\nWhen I do\nThen I should'
   };
 };
 
@@ -95,7 +95,7 @@ export function loadFeature(projectId, featureId) {
   };
 }
 
-export function createFeature(name, projectId) {
+export function createFeature(projectId, name) {
   return (dispatch) => {
     // HTTP POST here
     setTimeout(() => {
@@ -103,6 +103,21 @@ export function createFeature(name, projectId) {
         type: 'CREATE_FEATURE',
         name: name,
         projectId
+      });
+    }, 500);
+  };
+}
+
+export function saveFeature(projectId, featureId, text) {
+  return (dispatch) => {
+    // HTTP POST here
+    setTimeout(() => {
+      dispatch({
+        type: 'SAVE_FEATURE',
+        name: name,
+        projectId,
+        featureId,
+        text
       });
     }, 500);
   };
