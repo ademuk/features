@@ -6,17 +6,20 @@ function getFeaturePath(projectId, id) {
   return `/project/${projectId}/feature/${id}`;
 }
 
-const Features = ({ projectId, features }) => {
+const Features = ({ projectId, features, onCreateFeature }) => {
   return (
-    <ol>
-      {features.map(feature => {
-        return (
-          <li key={feature.id}>
-            <Link to={getFeaturePath(projectId, feature.id)}>{feature.name}</Link>
-          </li>
-        )
-      })}
-    </ol>
+    <div>
+      <ol>
+        {features.map(feature => {
+          return (
+            <li key={feature.id}>
+              <Link to={getFeaturePath(projectId, feature.id)}>{feature.name}</Link>
+            </li>
+          )
+        })}
+      </ol>
+      <button onClick={onCreateFeature}>Add Feature</button>
+    </div>
   )
 };
 

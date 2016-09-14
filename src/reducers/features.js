@@ -20,10 +20,13 @@ function listByProjectId(state = {}, action) {
         [action.projectId]: action.features
       };
     case "CREATE_FEATURE":
-      return state.concat({
-        id: Math.random() + '',
-        name: action.name
-      });
+      return {
+        ...state,
+        [action.projectId]: state[action.projectId].concat({
+          id: Math.random() + '',
+          name: action.name
+        })
+      };
     default:
       return state;
   }

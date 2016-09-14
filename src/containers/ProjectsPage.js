@@ -20,7 +20,7 @@ class ProjectsPage extends Component {
   }
 
   createProject = () => {
-    this.props.createProject(Math.random());
+    this.props.createProject('Project ' + Math.random());
   }
 }
 

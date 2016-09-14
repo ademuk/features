@@ -95,13 +95,14 @@ export function loadFeature(projectId, featureId) {
   };
 }
 
-export function createFeature(name) {
+export function createFeature(name, projectId) {
   return (dispatch) => {
     // HTTP POST here
     setTimeout(() => {
       dispatch({
         type: 'CREATE_FEATURE',
-        name: name
+        name: name,
+        projectId
       });
     }, 500);
   };
