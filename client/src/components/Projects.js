@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+
 import { Link } from 'react-router';
 
 function getProjectPath(id) {
   return `/project/${id}`;
 }
 
-const Projects = ({ projects, onCreateProject }) => {
+const Projects = ({ projects }) => {
   return (
     <div>
       <h2>Projects</h2>
@@ -18,14 +19,13 @@ const Projects = ({ projects, onCreateProject }) => {
           )
         })}
       </ol>
-      <button onClick={onCreateProject}>Add Project</button>
+      <Link to="/add-project">Add Project</Link>
     </div>
   )
 };
 
 Projects.propTypes = {
-  projects: PropTypes.array.isRequired,
-  onCreateProject: PropTypes.func.isRequired
+  projects: PropTypes.array.isRequired
 };
 
 export default Projects;

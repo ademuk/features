@@ -7,19 +7,17 @@ import ProjectsPage from './containers/ProjectsPage';
 import ProjectPage from './containers/ProjectPage';
 import FeaturesPage from './containers/FeaturesPage';
 import FeaturePage from './containers/FeaturePage';
+import AddProjectPage from './containers/AddProjectPage';
 
 export default (
   <Route name="app" component={App} path="/">
     <IndexRoute component={ProjectsPage} />
-    <Route path="project/:projectId"
-           component={ProjectPage}>
+    <Route path="project/:projectId" component={ProjectPage}>
       <IndexRoute component={FeaturesPage} />
-      <Route path="feature/:featureId"
-             component={FeaturePage} />
+      <Route path="feature/:featureId" component={FeaturePage} />
     </Route>
-    <Route path="login"
-           component={LoginPage} />
-    <Route path="logout"
-           component={LogoutPage} />
+    <Route path="add-project" component={AddProjectPage} />
+    <Route path="login" component={LoginPage} />
+    <Route path="logout" component={LogoutPage} />
   </Route>
 )

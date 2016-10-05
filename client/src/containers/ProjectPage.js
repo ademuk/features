@@ -7,7 +7,7 @@ import Project from '../components/Project';
 
 class ProjectPage extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadProject(this.props.params.projectId);
     this.props.loadFeatures(this.props.params.projectId);
   }

@@ -21,9 +21,23 @@ class LoginPage extends Component {
       <div>
         <h2>Login</h2>
         <form onSubmit={this.handleSubmit}>
-          <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
-          <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
-          <input type="submit" value="Log-in" />
+          <ol>
+            <li>
+              <label>
+                Username
+                <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
+              </label>
+            </li>
+            <li>
+              <label>
+                Password
+                <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+              </label>
+            </li>
+            <li>
+              <input type="submit" value="Log-in" />
+            </li>
+          </ol>
         </form>
       </div>
     );
@@ -37,6 +51,7 @@ class LoginPage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     this.props.createSession(this.state)
       .then(() => {
         browserHistory.push('/');
