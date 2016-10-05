@@ -27,7 +27,6 @@ class Feature extends Component {
           setOptions={{useSoftTabs: true}}
           tabSize={2}
           editorProps={{$blockScrolling: true}} />
-        <button onClick={this.save}>Save</button>
       </div>
     );
   }
@@ -35,10 +34,6 @@ class Feature extends Component {
   onChange = (value) => {
     this.setState({text: value});
   };
-
-  save = () => {
-    this.props.onSave(this.state.text);
-  }
 }
 
 Feature.propTypes = {
