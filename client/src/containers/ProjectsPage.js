@@ -6,9 +6,15 @@ import Projects from '../components/Projects';
 import { loadProjects, createProject } from '../actions';
 
 class ProjectsPage extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.doesSessionExist) {
       this.props.loadProjects();
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.doesSessionExist) {
+      props.loadProjects();
     }
   }
 
