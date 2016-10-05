@@ -1,59 +1,28 @@
-const mockProjects = [
-  {
-    id: 'id1',
-    name: 'Project 1'
-  }
-];
+import axios from 'axios';
 
-const mockProject = function (id) {
-  return {
-    id,
-    name: 'Project 1',
-    description: 'Project 1 description'
-  };
-};
-
-const mockFeatures = [
-  {
-    id: 'id1',
-    name: 'Feature A'
-  },
-  {
-    id: 'id2',
-    name: 'Feature B'
-  }
-];
-
-const mockFeature = function (id) {
-  return {
-    id,
-    name: 'Feature A',
-    description: 'Feature A description',
-    text: 'Feature: Feature A\n\nGiven I am\nWhen I do\nThen I should'
-  };
-};
+const baseUrl = 'http://127.0.0.1:8000/api'
 
 export function loadProjects() {
   return (dispatch) => {
-    // HTTP GET here
-    setTimeout(() => {
-      dispatch({
-        type: 'LOAD_PROJECTS',
-        projects: mockProjects
+    axios.get(`${baseUrl}/projects/`)
+      .then(function (response) {
+        dispatch({
+          type: 'LOAD_PROJECTS',
+          projects: response
+        });
       });
-    }, 500);
   };
 }
 
 export function loadProject(id) {
   return (dispatch) => {
-    // HTTP GET here
-    setTimeout(() => {
-      dispatch({
-        type: 'LOAD_PROJECT',
-        project: mockProject(id)
+    axios.get(`${baseUrl}/projects/${id}/`)
+      .then(function (response) {
+        dispatch({
+          type: 'LOAD_PROJECT',
+          project: response
+        });
       });
-    }, 500);
   };
 }
 
@@ -71,27 +40,27 @@ export function createProject(name) {
 
 export function loadFeatures(projectId) {
   return (dispatch) => {
-    // HTTP GET here
-    setTimeout(() => {
-      dispatch({
-        type: 'LOAD_FEATURES',
-        projectId,
-        features: mockFeatures
+    axios.get(`${baseUrl}/projects/${projectId}/features/`)
+      .then(function (response) {
+        dispatch({
+          type: 'LOAD_FEATURES',
+          projectId,
+          features: response
+        });
       });
-    }, 500);
   };
 }
 
 export function loadFeature(projectId, featureId) {
   return (dispatch) => {
-    // HTTP GET here
-    setTimeout(() => {
-      dispatch({
-        type: 'LOAD_FEATURE',
-        projectId,
-        feature: mockFeature(featureId)
+    axios.get(`${baseUrl}/features/${featureId}`)
+      .then(function (response) {
+        dispatch({
+          type: 'LOAD_FEATURES',
+          projectId,
+          feature: response
+        });
       });
-    }, 500);
   };
 }
 
@@ -110,7 +79,7 @@ export function createFeature(projectId, name) {
 
 export function saveFeature(projectId, featureId, text) {
   return (dispatch) => {
-    // HTTP POST here
+    // HTTP PUT here
     setTimeout(() => {
       dispatch({
         type: 'SAVE_FEATURE',
