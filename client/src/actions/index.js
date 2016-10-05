@@ -103,31 +103,3 @@ export function loadFeature(projectId, featureId) {
       });
   };
 }
-
-export function createFeature(projectId, name) {
-  return (dispatch) => {
-    // HTTP POST here
-    setTimeout(() => {
-      dispatch({
-        type: 'CREATE_FEATURE_SUCCESS',
-        name: name,
-        projectId
-      });
-    }, 500);
-  };
-}
-
-export function saveFeature(projectId, featureId, text) {
-  return (dispatch) => {
-    // HTTP PUT here
-    setTimeout(() => {
-      dispatch({
-        type: 'SAVE_FEATURE_SUCCESS',
-        name: name,
-        projectId,
-        featureId,
-        text
-      });
-    }, 500);
-  };
-}

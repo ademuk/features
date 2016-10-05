@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
-import { loadFeatures, createFeature } from '../actions';
+import { loadFeatures } from '../actions';
 import Features from '../components/Features';
 
 class FeaturesPage extends Component {
@@ -17,20 +17,15 @@ class FeaturesPage extends Component {
       <div>
         {!features
           ? <h2>Loading</h2>
-          : <Features projectId={projectId} features={features} onCreateFeature={this.createFeature} />
+          : <Features projectId={projectId} features={features} />
         }
       </div>
     )
-  }
-
-  createFeature = () => {
-    return this.props.createFeature(this.props.params.projectId, 'Feature ' + Math.random());
   }
 }
 
 FeaturesPage.propTypes = {
   loadFeatures: PropTypes.func.isRequired,
-  createFeature: PropTypes.func.isRequired,
   features: PropTypes.array
 };
 
@@ -42,6 +37,5 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps, {
-  loadFeatures,
-  createFeature
+  loadFeatures
 })(FeaturesPage)

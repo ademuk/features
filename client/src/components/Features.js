@@ -6,7 +6,7 @@ function getFeaturePath(projectId, id) {
   return `/project/${projectId}/feature/${id}`;
 }
 
-const Features = ({ projectId, features, onCreateFeature }) => {
+const Features = ({ projectId, features }) => {
   return (
     <div>
       <ol>
@@ -18,7 +18,6 @@ const Features = ({ projectId, features, onCreateFeature }) => {
           )
         })}
       </ol>
-      <button onClick={onCreateFeature}>Add Feature</button>
     </div>
   )
 };
