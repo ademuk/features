@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Projects from '../components/Projects';
-import { loadProjects } from '../actions';
+import { loadProjects, createProject } from '../actions';
 
 class ProjectsPage extends Component {
   componentDidMount() {
@@ -22,14 +22,19 @@ class ProjectsPage extends Component {
     const { doesSessionExist, projects } = this.props;
     return (
       doesSessionExist ?
-        <Projects projects={projects} /> :
+        <Projects projects={projects} onCreateProject={this.createProject} /> :
         <div></div>
     )
+  }
+
+  createProject = () => {
+    this.props.createProject('Project ' + Math.random());
   }
 }
 
 ProjectsPage.propTypes = {
   loadProjects: PropTypes.func.isRequired,
+  createProject: PropTypes.func.isRequired,
   projects: PropTypes.array.isRequired
 };
 
@@ -41,5 +46,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  loadProjects
+  loadProjects,
+  createProject
 })(ProjectsPage);

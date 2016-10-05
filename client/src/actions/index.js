@@ -78,6 +78,18 @@ export function loadProject(id) {
   };
 }
 
+export function createProject(name) {
+  return (dispatch) => {
+    // HTTP POST here
+    setTimeout(() => {
+      dispatch({
+        type: 'CREATE_PROJECT_SUCCESS',
+        name: name
+      });
+    }, 500);
+  };
+}
+
 export function loadFeatures(projectId) {
   return (dispatch) => {
     axios.get(`${baseUrl}/projects/${projectId}/features/`, getConfig())

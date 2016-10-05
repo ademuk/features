@@ -5,7 +5,7 @@ function getProjectPath(id) {
   return `/project/${id}`;
 }
 
-const Projects = ({ projects }) => {
+const Projects = ({ projects, onCreateProject }) => {
   return (
     <div>
       <h2>Projects</h2>
@@ -18,12 +18,14 @@ const Projects = ({ projects }) => {
           )
         })}
       </ol>
+      <button onClick={onCreateProject}>Add Project</button>
     </div>
   )
 };
 
 Projects.propTypes = {
-  projects: PropTypes.array.isRequired
+  projects: PropTypes.array.isRequired,
+  onCreateProject: PropTypes.func.isRequired
 };
 
 export default Projects;
