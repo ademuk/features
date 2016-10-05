@@ -135,3 +135,7 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
+
+import datetime
+
+JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=60*60)
