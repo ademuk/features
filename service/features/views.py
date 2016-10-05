@@ -12,7 +12,6 @@ from .serializers import ProjectSerializer, FeatureSerializer
 class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Project.objects.filter()
     serializer_class = ProjectSerializer
-    authentication_classes = (SessionAuthentication,)
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
@@ -30,7 +29,6 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
 class FeatureDetailView(generics.RetrieveAPIView):
     queryset = Feature.objects.all()
     serializer_class = FeatureSerializer
-    authentication_classes = (SessionAuthentication,)
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):

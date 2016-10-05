@@ -8,6 +8,7 @@ function getProjectPath(id) {
 const Projects = ({ projects, onCreateProject }) => {
   return (
     <div>
+      <h2>Projects</h2>
       <ol>
         {projects.map(project => {
           return (

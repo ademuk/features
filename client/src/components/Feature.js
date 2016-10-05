@@ -8,7 +8,7 @@ class Feature extends Component {
   constructor(props) {
     super();
     this.state = {
-      text: props.feature.text
+      body: props.feature.body
     };
   }
 
@@ -17,9 +17,8 @@ class Feature extends Component {
     return (
       <div>
         <h2>{feature.name}</h2>
-        <p>{feature.description}</p>
         <AceEditor
-          value={this.state.text}
+          value={this.state.body}
           onChange={this.onChange}
           minLines={15}
           maxLines={300}

@@ -7,15 +7,17 @@ import { loadProjects, createProject } from '../actions';
 
 class ProjectsPage extends Component {
   componentWillMount() {
-    this.props.loadProjects();
+    if (this.props.doesSessionExist) {
+      this.props.loadProjects();
+    }
   }
 
   render() {
+    const { doesSessionExist, projects } = this.props;
     return (
-      <div>
-        <h2>Projects</h2>
-        <Projects projects={this.props.projects} onCreateProject={this.createProject} />
-      </div>
+      doesSessionExist ?
+        <Projects projects={projects} onCreateProject={this.createProject} /> :
+        <div></div>
     )
   }
 
@@ -32,7 +34,8 @@ ProjectsPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    projects: state.projects.list
+    projects: state.projects.list,
+    doesSessionExist: state.auth.doesSessionExist
   };
 }
 

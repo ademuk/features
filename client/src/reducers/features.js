@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 function byId(state = {}, action) {
   switch (action.type) {
-    case "LOAD_FEATURE":
+    case "LOAD_FEATURE_SUCCESS":
       return {
         ...state,
         [action.projectId + action.feature.id]: action.feature
       };
-    case "SAVE_FEATURE":
+    case "SAVE_FEATURE_SUCCESS":
       return {
         ...state,
         [action.projectId + action.featureId]: {
@@ -22,12 +22,12 @@ function byId(state = {}, action) {
 
 function listByProjectId(state = {}, action) {
   switch (action.type) {
-    case "LOAD_FEATURES":
+    case "LOAD_FEATURES_SUCCESS":
       return {
         ...state,
         [action.projectId]: action.features
       };
-    case "CREATE_FEATURE":
+    case "CREATE_FEATURE_SUCCESS":
       return {
         ...state,
         [action.projectId]: state[action.projectId].concat({

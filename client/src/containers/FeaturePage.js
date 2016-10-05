@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
-import { loadFeature, saveFeature } from '../actions';
 import Feature from '../components/Feature';
+
+import { loadFeature, saveFeature } from '../actions';
 
 class FeaturePage extends Component {
   componentWillMount() {
