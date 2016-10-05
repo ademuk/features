@@ -13,7 +13,7 @@ class ProjectsPage extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if (props.doesSessionExist) {
+    if (!this.props.doesSessionExist && props.doesSessionExist) {
       props.loadProjects();
     }
   }
