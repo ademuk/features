@@ -40,6 +40,8 @@ export function createSession(credentials) {
         dispatch({
           type: 'CREATE_SESSION_SUCCESS'
         });
+
+        return response.data;
       });
   };
 }
@@ -56,37 +58,47 @@ export function destroySession() {
 
 export function loadProjects() {
   return (dispatch) => {
-    axios.get(`${baseUrl}/projects/`, getConfig())
+    return axios.get(`${baseUrl}/projects/`, getConfig())
       .then(function (response) {
         dispatch({
           type: 'LOAD_PROJECTS_SUCCESS',
           projects: response.data
         });
+
+        return response.data;
       });
   };
 }
 
 export function loadProject(id) {
   return (dispatch) => {
-    axios.get(`${baseUrl}/projects/${id}/`, getConfig())
+    return axios.get(`${baseUrl}/projects/${id}/`, getConfig())
       .then(function (response) {
         dispatch({
           type: 'LOAD_PROJECT_SUCCESS',
           project: response.data
         });
+
+        return response.data;
       });
   };
 }
 
-export function createProject(name) {
+export function createProject(project) {
   return (dispatch) => {
-    // HTTP POST here
-    setTimeout(() => {
-      dispatch({
-        type: 'CREATE_PROJECT_SUCCESS',
-        name: name
-      });
-    }, 500);
+    const payload = {
+      ...project,
+      git_repo_url: project.gitRepoUrl
+    };
+    return axios.post(`${baseUrl}/projects/`, payload, getConfig())
+      .then(response => {
+        dispatch({
+          type: 'CREATE_PROJECT_SUCCESS',
+          project: response.data
+        });
+
+        return response.data;
+      })
   };
 }
 
@@ -99,19 +111,23 @@ export function loadFeatures(projectId) {
           projectId,
           features: response.data
         });
+
+        return response.data;
       });
   };
 }
 
 export function loadFeature(projectId, featureId) {
   return (dispatch) => {
-    axios.get(`${baseUrl}/features/${featureId}`, getConfig())
+    return axios.get(`${baseUrl}/features/${featureId}`, getConfig())
       .then(function (response) {
         dispatch({
           type: 'LOAD_FEATURE_SUCCESS',
           projectId,
           feature: response.data
         });
+
+        return response.data;
       });
   };
 }

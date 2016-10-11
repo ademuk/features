@@ -5,6 +5,7 @@ from django.db import models
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
+    git_repo_url = models.CharField(max_length=255, blank=True)
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
 
     def __str__(self):

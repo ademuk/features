@@ -2,14 +2,13 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
 from rest_framework import generics
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Project, Feature
 from .serializers import ProjectSerializer, FeatureSerializer
 
 
-class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
+class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.filter()
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated,)
@@ -17,6 +16,9 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return user.projects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(users=[self.request.user])
 
     @detail_route()
     def features(self, request, pk=None):

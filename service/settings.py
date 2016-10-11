@@ -138,4 +138,25 @@ REST_FRAMEWORK = {
 
 import datetime
 
-JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=60*60)
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=60 * 60)
+}
+
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": 'asgi_redis.RedisChannelLayer',
+        "CONFIG": {
+            "hosts": [REDIS_URL]
+        },
+        "ROUTING": "service.routing.channel_routing"
+    }
+}
+
+BROKER_URL = REDIS_URL
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
