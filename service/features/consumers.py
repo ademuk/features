@@ -5,8 +5,6 @@ from .models import Project
 def connect_to_project(message, pk):
     project = Project.objects.get(pk=pk)
 
-    print('connect_to_project: %s' % project.id)
-
     Group('project-%d' % project.id).add(message.reply_channel)
 
 

@@ -1,6 +1,10 @@
 from __future__ import unicode_literals
+import time
+import json
 
 from django.db import models
+
+from channels import Group
 
 
 class Project(models.Model):
@@ -16,8 +20,17 @@ class Project(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_ADDED)
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
 
-    def set_as_added(self):
+    def import_features_from_git(self):
+        time.sleep(2)
+
         self.status = Project.STATUS_ADDED
+        self.save()
+
+        Group('project-%d' % self.id).send({
+            'text': json.dumps({
+                'status': self.status
+            })
+        })
 
     def __str__(self):
         return self.name
