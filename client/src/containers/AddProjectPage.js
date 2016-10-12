@@ -16,27 +16,6 @@ class AddProjectPage extends Component {
     }
   }
 
-  componentDidMount() {
-    const ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
-    const ws_url = ws_scheme + '://' + window.location.host;
-
-    console.log("Connecting: " + ws_url)
-
-    const socket = new WebSocket(ws_url);
-
-    socket.onmessage = function(message) {
-      console.log("Message received: " + message.data);
-
-      const data = JSON.parse(message.data);
-
-      if (data.action === "started") {
-
-      } else if (data.action === "completed"){
-
-      }
-    };
-  }
-
   render() {
     return (
       <form onSubmit={this.handleSubmit}>

@@ -24,7 +24,7 @@ const getConfig = function () {
 };
 
 export function loadSession() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: getToken() ? 'CREATE_SESSION_SUCCESS' : 'DESTROY_SESSION_SUCCESS'
     });
@@ -32,7 +32,7 @@ export function loadSession() {
 }
 
 export function createSession(credentials) {
-  return (dispatch) => {
+  return dispatch => {
     return axios.post(`${baseUrl}/sessions/`, credentials)
       .then(function (response) {
         setToken(response.data.token);
@@ -47,7 +47,7 @@ export function createSession(credentials) {
 }
 
 export function destroySession() {
-  return (dispatch) => {
+  return dispatch => {
     destroyToken(null);
 
     dispatch({
@@ -57,7 +57,7 @@ export function destroySession() {
 }
 
 export function loadProjects() {
-  return (dispatch) => {
+  return dispatch => {
     return axios.get(`${baseUrl}/projects/`, getConfig())
       .then(function (response) {
         dispatch({
@@ -71,7 +71,7 @@ export function loadProjects() {
 }
 
 export function loadProject(id) {
-  return (dispatch) => {
+  return dispatch => {
     return axios.get(`${baseUrl}/projects/${id}/`, getConfig())
       .then(function (response) {
         dispatch({
@@ -85,7 +85,7 @@ export function loadProject(id) {
 }
 
 export function createProject(project) {
-  return (dispatch) => {
+  return dispatch => {
     const payload = {
       ...project,
       git_repo_url: project.gitRepoUrl
@@ -102,8 +102,18 @@ export function createProject(project) {
   };
 }
 
+export function updateProjectStatus(projectId, status) {
+  return dispatch => {
+    dispatch({
+      type: 'UPDATE_PROJECT_STATUS',
+      projectId,
+      status
+    })
+  }
+}
+
 export function loadFeatures(projectId) {
-  return (dispatch) => {
+  return dispatch => {
     axios.get(`${baseUrl}/projects/${projectId}/features/`, getConfig())
       .then(function (response) {
         dispatch({
@@ -118,7 +128,7 @@ export function loadFeatures(projectId) {
 }
 
 export function loadFeature(projectId, featureId) {
-  return (dispatch) => {
+  return dispatch => {
     return axios.get(`${baseUrl}/features/${featureId}`, getConfig())
       .then(function (response) {
         dispatch({

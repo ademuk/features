@@ -4,4 +4,7 @@ from django.apps import AppConfig
 
 
 class FeaturesConfig(AppConfig):
-    name = 'features'
+    name = 'service.features'
+
+    def ready(self):
+        from . import signals

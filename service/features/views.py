@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Project, Feature
 from .serializers import ProjectSerializer, FeatureSerializer
 
-
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.filter()
     serializer_class = ProjectSerializer
@@ -18,7 +17,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return user.projects.all()
 
     def perform_create(self, serializer):
-        serializer.save(users=[self.request.user])
+        serializer.save(users=[self.request.user], status=Project.STATUS_ADDING).status
 
     @detail_route()
     def features(self, request, pk=None):

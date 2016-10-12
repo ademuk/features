@@ -1,7 +1,9 @@
 from channels import route
-from . import consumers
+from .features import consumers
+
+path = r'^/api/projects/(?P<pk>\d+)/stream/$'
 
 channel_routing = [
-    route("websocket.connect", consumers.ws_connect),
-    route("websocket.receive", consumers.ws_receive)
+    route("websocket.connect", consumers.connect_to_project, path=path),
+    route("websocket.receive", consumers.disconnect_from_project, path=path)
 ]

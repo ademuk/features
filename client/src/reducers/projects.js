@@ -7,6 +7,14 @@ function byId(state = {}, action) {
         ...state,
         [action.project.id]: action.project
       };
+    case "UPDATE_PROJECT_STATUS":
+      return {
+        ...state,
+        [action.projectId]: {
+          ...state[action.projectId],
+          status: action.status
+        }
+      };
     default:
       return state;
   }
