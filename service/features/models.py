@@ -1,14 +1,11 @@
 from __future__ import unicode_literals
 import json
-import subprocess
 
 from django.db import models
 
 from channels import Group
 
-
-def git(*args):
-    return subprocess.call(['git'] + list(args))
+from .importer import GitFeatureImporter
 
 
 class Project(models.Model):
@@ -21,19 +18,14 @@ class Project(models.Model):
 
     name = models.CharField(max_length=255)
     git_repo_url = models.CharField(max_length=255, blank=True)
+    features_path = models.CharField(max_length=255, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_ADDED)
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
 
     def import_features_from_git(self):
-        repo_path = 'repo-project-%d' % self.id
-        git("clone", self.git_repo_url, repo_path)
+        importer = GitFeatureImporter(self)
 
-        import os
-        for root, dirs, files in os.walk("./%s" % repo_path):
-            for file in files:
-                if file.endswith(".feature"):
-                    print(os.path.join(root, file))
-
+        self.features_path = importer.run()
         self.status = Project.STATUS_ADDED
         self.save()
 

@@ -40,7 +40,7 @@ class ProjectPage extends Component {
     return (
       <div>
         {!project
-          ? <h2>Loading</h2>
+          ? <p>Loading</p>
           : (project.status === 'adding'
               ? <h2>Adding</h2>
               : <Project project={project} />)
