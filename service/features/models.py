@@ -1,10 +1,14 @@
 from __future__ import unicode_literals
-import time
 import json
+import subprocess
 
 from django.db import models
 
 from channels import Group
+
+
+def git(*args):
+    return subprocess.call(['git'] + list(args))
 
 
 class Project(models.Model):
@@ -21,7 +25,14 @@ class Project(models.Model):
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
 
     def import_features_from_git(self):
-        time.sleep(2)
+        repo_path = 'repo-project-%d' % self.id
+        git("clone", self.git_repo_url, repo_path)
+
+        import os
+        for root, dirs, files in os.walk("./%s" % repo_path):
+            for file in files:
+                if file.endswith(".feature"):
+                    print(os.path.join(root, file))
 
         self.status = Project.STATUS_ADDED
         self.save()
