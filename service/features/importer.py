@@ -14,18 +14,18 @@ class GitFeatureImporter:
 
     def run(self):
         repo_path = 'repo-project-%d' % self.project.id
-        absolute_feature_paths = self.get_feature_paths(repo_path)
-        features_root_path = os.path.commonprefix(absolute_feature_paths)
+        feature_paths = self.get_feature_paths(repo_path)
+        features_root_path = os.path.commonprefix(feature_paths)
 
-        for path in absolute_feature_paths:
+        for path in feature_paths:
             feature_name = path.replace(features_root_path, '')
             feature_file = open(path, 'r')
-            feature_file_body = feature_file.read()
+            feature_body = feature_file.read()
 
             self.project.features.create(
                 project=self.project,
                 name=feature_name,
-                body=feature_file_body
+                body=feature_body
             )
 
         shutil.rmtree(repo_path)
