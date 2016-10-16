@@ -33,7 +33,7 @@ class Feature extends Component {
   }
 
   onChange = (value) => {
-    this.setState({text: value});
+    this.setState({body: value});
   };
 }
 
