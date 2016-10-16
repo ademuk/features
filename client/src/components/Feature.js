@@ -19,7 +19,6 @@ class Feature extends Component {
         <h3>{feature.name}</h3>
         <AceEditor
           value={this.state.body}
-          onChange={this.onChange}
           width="1024px"
           minLines={15}
           maxLines={300}
@@ -31,10 +30,6 @@ class Feature extends Component {
       </div>
     );
   }
-
-  onChange = (value) => {
-    this.setState({body: value});
-  };
 }
 
 Feature.propTypes = {
