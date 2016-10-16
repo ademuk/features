@@ -18,7 +18,7 @@ class FeaturePage extends Component {
     return (
       <div>
         {!feature
-          ? <h2>Loading</h2>
+          ? <p>Loading</p>
           : <Feature feature={feature} />
         }
       </div>

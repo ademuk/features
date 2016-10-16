@@ -16,10 +16,11 @@ class Feature extends Component {
     const { feature } = this.props;
     return (
       <div>
-        <h2>{feature.name}</h2>
+        <h3>{feature.name}</h3>
         <AceEditor
           value={this.state.body}
           onChange={this.onChange}
+          width="1024px"
           minLines={15}
           maxLines={300}
           mode="gherkin"
