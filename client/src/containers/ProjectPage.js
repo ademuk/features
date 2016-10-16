@@ -39,11 +39,9 @@ class ProjectPage extends Component {
     const { project } = this.props;
     return (
       <div>
-        {!project
-          ? <p>Loading</p>
-          : (project.status === 'adding'
-              ? <h2>Adding</h2>
-              : <Project project={project} />)
+        {project
+          ? <Project project={project} />
+          : <p>Loading</p>
         }
         <div>{this.props.children}</div>
       </div>

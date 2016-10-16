@@ -13,22 +13,21 @@ class FeaturesPage extends Component {
 
   componentWillReceiveProps(props) {
     const { project } = this.props;
-    const { projectId } = this.props.params;
     if (project) {
       const newStatus = props.project.status;
       if (newStatus !== project.status && newStatus === 'added') {
-        this.props.loadFeatures(projectId);
+        this.props.loadFeatures(project.id);
       }
     }
   }
 
   render () {
-    const { params: { projectId }, features } = this.props;
+    const { project, features } = this.props;
     return (
       <div>
-        {!features
-          ? <p>Loading</p>
-          : <Features projectId={projectId} features={features} />
+        {(project && features)
+          ? <Features projectId={project.id} features={features} />
+          : <p>Loading</p>
         }
       </div>
     )
@@ -37,7 +36,8 @@ class FeaturesPage extends Component {
 
 FeaturesPage.propTypes = {
   loadFeatures: PropTypes.func.isRequired,
-  features: PropTypes.array
+  features: PropTypes.array,
+  project: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {

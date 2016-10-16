@@ -23,7 +23,7 @@ const Features = ({ projectId, features }) => {
 };
 
 Features.propTypes = {
-  projectId: PropTypes.string.isRequired,
+  projectId: PropTypes.number.isRequired,
   features: PropTypes.array.isRequired
 };
 
