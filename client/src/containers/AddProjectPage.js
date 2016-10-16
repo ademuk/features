@@ -12,7 +12,7 @@ class AddProjectPage extends Component {
 
     this.state = {
       name: '',
-      gitRepoUrl: ''
+      repoUrl: ''
     }
   }
 
@@ -30,7 +30,7 @@ class AddProjectPage extends Component {
           <li>
             <label>
               GIT Repository URL
-              <input name="gitRepoUrl" type="text" value={this.state.gitRepoUrl} onChange={this.handleChange} />
+              <input name="repoUrl" type="text" value={this.state.repoUrl} onChange={this.handleChange} />
             </label>
           </li>
           <li>

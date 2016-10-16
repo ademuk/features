@@ -6,7 +6,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('id', 'name', 'status', 'git_repo_url')
+        fields = ('id', 'name', 'status', 'repo_url')
 
 
 class FeatureSerializer(serializers.ModelSerializer):

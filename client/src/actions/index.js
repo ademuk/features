@@ -88,7 +88,7 @@ export function createProject(project) {
   return dispatch => {
     const payload = {
       ...project,
-      git_repo_url: project.gitRepoUrl
+      repo_url: project.repoUrl
     };
     return axios.post(`${baseUrl}/projects/`, payload, getConfig())
       .then(response => {

@@ -19,7 +19,7 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_ADDED)
     users = models.ManyToManyField('auth.User', related_name='projects', blank=True)
-    git_repo_url = models.CharField(max_length=255, blank=True)
+    repo_url = models.CharField(max_length=255, blank=True)
     features_path = models.CharField(max_length=255, blank=True)
 
     def import_features_from_git(self):

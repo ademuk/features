@@ -9,6 +9,6 @@ from .models import Project
 def import_features_from_git_repo(project_id):
     project = Project.objects.get(pk=project_id)
 
-    print('%s - Importing features from: %s' % (project.name, project.git_repo_url))
+    print('%s - Importing features from: %s' % (project.name, project.repo_url))
 
     project.import_features_from_git()

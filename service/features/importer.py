@@ -33,7 +33,7 @@ class GitFeatureImporter:
         return features_root_path.replace(repo_path, '')
 
     def get_feature_paths(self, repo_path):
-        git("clone", self.project.git_repo_url, repo_path)
+        git("clone", self.project.repo_url, repo_path)
 
         paths = []
         for root, dirs, files in os.walk("%s" % repo_path):
