@@ -1,41 +1,19 @@
-import axios from 'axios';
+import api from '../data/api';
 
-const baseUrl = 'http://127.0.0.1:8000/api'
-
-const getToken = function () {
-  return localStorage.getItem('jwt');
-};
-
-const setToken = function (token) {
-  localStorage.setItem('jwt', token);
-};
-
-const destroyToken = function () {
-  localStorage.removeItem('jwt');
-};
-
-const getConfig = function () {
-  const token = getToken();
-  return token ? {
-    headers: {
-      Authorization: `JWT ${token}`
-    }
-  } : {};
-};
 
 export function loadSession() {
   return dispatch => {
     dispatch({
-      type: getToken() ? 'CREATE_SESSION_SUCCESS' : 'DESTROY_SESSION_SUCCESS'
+      type: api.getToken() ? 'CREATE_SESSION_SUCCESS' : 'DESTROY_SESSION_SUCCESS'
     });
   };
 }
 
 export function createSession(credentials) {
   return dispatch => {
-    return axios.post(`${baseUrl}/sessions/`, credentials)
+    return api.post('/sessions/', credentials)
       .then(function (response) {
-        setToken(response.data.token);
+        api.setToken(response.data.token);
 
         dispatch({
           type: 'CREATE_SESSION_SUCCESS'
@@ -48,7 +26,7 @@ export function createSession(credentials) {
 
 export function destroySession() {
   return dispatch => {
-    destroyToken(null);
+    api.destroyToken(null);
 
     dispatch({
       type: 'DESTROY_SESSION_SUCCESS'
@@ -58,7 +36,7 @@ export function destroySession() {
 
 export function loadProjects() {
   return dispatch => {
-    return axios.get(`${baseUrl}/projects/`, getConfig())
+    return api.get('/projects/')
       .then(function (response) {
         dispatch({
           type: 'LOAD_PROJECTS_SUCCESS',
@@ -72,7 +50,7 @@ export function loadProjects() {
 
 export function loadProject(id) {
   return dispatch => {
-    return axios.get(`${baseUrl}/projects/${id}/`, getConfig())
+    return api.get(`/projects/${id}/`)
       .then(function (response) {
         dispatch({
           type: 'LOAD_PROJECT_SUCCESS',
@@ -90,7 +68,7 @@ export function createProject(project) {
       ...project,
       repo_url: project.repoUrl
     };
-    return axios.post(`${baseUrl}/projects/`, payload, getConfig())
+    return api.post('/projects/', payload)
       .then(response => {
         dispatch({
           type: 'CREATE_PROJECT_SUCCESS',
@@ -114,7 +92,7 @@ export function updateProjectStatus(projectId, status) {
 
 export function loadFeatures(projectId) {
   return dispatch => {
-    axios.get(`${baseUrl}/projects/${projectId}/features/`, getConfig())
+    api.get(`/projects/${projectId}/features/`)
       .then(function (response) {
         dispatch({
           type: 'LOAD_FEATURES_SUCCESS',
@@ -129,7 +107,7 @@ export function loadFeatures(projectId) {
 
 export function loadFeature(projectId, featureId) {
   return dispatch => {
-    return axios.get(`${baseUrl}/features/${featureId}`, getConfig())
+    return api.get(`/features/${featureId}`)
       .then(function (response) {
         dispatch({
           type: 'LOAD_FEATURE_SUCCESS',

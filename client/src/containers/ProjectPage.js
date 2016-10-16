@@ -2,8 +2,10 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
+import config from '../config';
 import { loadProject, updateProjectStatus } from '../actions';
 import Project from '../components/Project';
+
 
 class ProjectPage extends Component {
 
@@ -11,15 +13,14 @@ class ProjectPage extends Component {
     const projectId = this.props.params.projectId;
     const updateProjectStatus = this.props.updateProjectStatus;
 
-    const ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
-    const ws_url = ws_scheme + '://localhost:8000/api/projects/' + projectId + '/stream/';
+    const wsUrl = `${config.baseWebSocketUrl}/projects/${projectId}/stream/`;
 
-    console.log("Connecting: " + ws_url)
+    console.log("Connecting: " + wsUrl);
 
-    const socket = new WebSocket(ws_url);
+    const socket = new WebSocket(wsUrl);
 
     socket.onopen = function () {
-      console.log('Connected to: ' + ws_url);
+      console.log('Connected to: ' + wsUrl);
     };
 
     socket.onmessage = function(message) {
