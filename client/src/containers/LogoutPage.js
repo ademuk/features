@@ -17,7 +17,7 @@ class LogoutPage extends Component {
 
   componentDidMount() {
     this.props.destroySession();
-    browserHistory.push('/');
+    browserHistory.push('/login');
   }
 }
 

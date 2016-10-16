@@ -1,0 +1,39 @@
+form ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+form ol li {
+    margin: 10px 0;
+}
+
+form ol li label span, form ol li label input {
+    display: inline-block;
+    width: 150px;
+    margin-right: 10px;
+}
+
+nav ol {
+    padding: 0;
+    margin: 0;
+}
+
+nav ol li {
+    display: inline-block;
+}
+
+nav ol li a {
+    display: inline-block;
+    padding: 12px 3px;
+}
+
+.App-header nav {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+.App-header h1 {
+    display: inline-block;
+    margin: 0;
+}

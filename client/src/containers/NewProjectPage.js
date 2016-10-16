@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router'
 
 import { createProject } from '../actions';
 
-class AddProjectPage extends Component {
+class NewProjectPage extends Component {
 
   constructor(props) {
     super(props);
@@ -19,17 +19,17 @@ class AddProjectPage extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h2>Add Project</h2>
+        <h2>New Project</h2>
         <ol>
           <li>
             <label>
-              Project Name
-              <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
+              <span>Project Name*</span>
+              <input name="name" type="text" value={this.state.name} required onChange={this.handleChange} />
             </label>
           </li>
           <li>
             <label>
-              GIT Repository URL
+              <span>Repository URL (Git)</span>
               <input name="repoUrl" type="text" value={this.state.repoUrl} onChange={this.handleChange} />
             </label>
           </li>
@@ -63,4 +63,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   createProject
-})(AddProjectPage);
+})(NewProjectPage);

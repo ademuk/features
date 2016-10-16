@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import LoginLink from '../components/LoginLink';
-
 import { loadSession } from '../actions';
+
+import './App.css';
 
 class App extends Component {
   render() {
@@ -12,7 +14,16 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Features</h1>
-          <LoginLink loggedIn={this.props.auth.doesSessionExist} />
+          <nav>
+            <ol>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <LoginLink loggedIn={this.props.auth.doesSessionExist} />
+              </li>
+            </ol>
+          </nav>
         </header>
         {this.props.children}
       </div>

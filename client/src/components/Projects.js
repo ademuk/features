@@ -19,7 +19,7 @@ const Projects = ({ projects }) => {
           )
         })}
       </ol>
-      <Link to="/add-project">Add Project</Link>
+      <Link to="/new-project">New Project</Link>
     </div>
   )
 };
