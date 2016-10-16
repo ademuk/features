@@ -139,7 +139,7 @@ REST_FRAMEWORK = {
 import datetime
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=60 * 60)
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(weeks=1)
 }
 
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
