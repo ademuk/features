@@ -17,13 +17,13 @@ class ProjectPage extends Component {
 
     console.log("Connecting: " + wsUrl);
 
-    const socket = new WebSocket(wsUrl);
+    this.socket = new WebSocket(wsUrl);
 
-    socket.onopen = function () {
+    this.socket.onopen = function () {
       console.log('Connected to: ' + wsUrl);
     };
 
-    socket.onmessage = function(message) {
+    this.socket.onmessage = function(message) {
       console.log("Message received: " + message.data);
 
       const data = JSON.parse(message.data);
@@ -34,6 +34,10 @@ class ProjectPage extends Component {
     };
 
     this.props.loadProject(projectId);
+  }
+
+  componentWillUnmount() {
+    this.socket.close();
   }
 
   render() {
