@@ -24,13 +24,13 @@ class NewProjectPage extends Component {
           <li>
             <label>
               <span>Project Name*</span>
-              <input name="name" type="text" value={this.state.name} required onChange={this.handleChange} />
+              <input name="name" type="text" placeholder="Project A" value={this.state.name} required onChange={this.handleChange} />
             </label>
           </li>
           <li>
             <label>
               <span>Repository URL (Git)</span>
-              <input name="repoUrl" type="text" value={this.state.repoUrl} onChange={this.handleChange} />
+              <input name="repoUrl" type="text" placeholder="https://user:pass@hostname.com" value={this.state.repoUrl} onChange={this.handleChange} />
             </label>
           </li>
           <li>

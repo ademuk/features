@@ -25,13 +25,13 @@ class LoginPage extends Component {
             <li>
               <label>
                 <span>Username</span>
-                <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
+                <input name="username" type="text" placeholder="amigo" value={this.state.username} onChange={this.handleChange} />
               </label>
             </li>
             <li>
               <label>
                 <span>Password</span>
-                <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+                <input name="password" type="password" placeholder="B33d33d33" value={this.state.password} onChange={this.handleChange} />
               </label>
             </li>
             <li>
