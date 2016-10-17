@@ -7,14 +7,6 @@ function byId(state = {}, action) {
         ...state,
         [action.projectId + action.feature.id]: action.feature
       };
-    case "SAVE_FEATURE_SUCCESS":
-      return {
-        ...state,
-        [action.projectId + action.featureId]: {
-          ...state[action.projectId + action.featureId],
-          text: action.text
-        }
-      };
     default:
       return state;
   }
