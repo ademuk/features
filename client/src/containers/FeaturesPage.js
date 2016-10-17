@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { loadFeatures } from '../actions/features';
 import Features from '../components/Features';
+import { STATUS_ADDED } from '../data/constants';
+
 
 class FeaturesPage extends Component {
   componentWillMount() {
@@ -15,7 +17,7 @@ class FeaturesPage extends Component {
     const { project } = this.props;
     if (project) {
       const newStatus = props.project.status;
-      if (newStatus !== project.status && newStatus === 'added') {
+      if (newStatus !== project.status && newStatus === STATUS_ADDED) {
         this.props.loadFeatures(project.id);
       }
     }
