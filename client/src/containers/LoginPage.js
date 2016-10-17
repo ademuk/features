@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { browserHistory } from 'react-router'
 
-import { createSession } from '../actions';
+import { createSession } from '../actions/auth';
 
 class LoginPage extends Component {
   constructor(props) {

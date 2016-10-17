@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Feature from '../components/Feature';
 
-import { loadFeature } from '../actions';
+import { loadFeature } from '../actions/features';
 
 class FeaturePage extends Component {
 

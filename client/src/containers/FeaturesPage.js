@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
-import { loadFeatures } from '../actions';
+import { loadFeatures } from '../actions/features';
 import Features from '../components/Features';
 
 class FeaturesPage extends Component {

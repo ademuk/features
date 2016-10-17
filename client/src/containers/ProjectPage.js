@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import config from '../config';
-import { loadProject, updateProjectStatus } from '../actions';
+import { loadProject, updateProjectStatus } from '../actions/projects';
 import Project from '../components/Project';
 
 

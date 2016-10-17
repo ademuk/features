@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
 
-import { createProject } from '../actions';
+import { createProject } from '../actions/projects';
 
 class NewProjectPage extends Component {
 

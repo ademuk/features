@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Projects from '../components/Projects';
-import { loadProjects } from '../actions';
+import { loadProjects } from '../actions/projects';
 
 class ProjectsPage extends Component {
   componentDidMount() {

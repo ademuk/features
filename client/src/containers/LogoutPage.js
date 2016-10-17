@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { browserHistory } from 'react-router';
 
-import { destroySession } from '../actions';
+import { destroySession } from '../actions/auth';
 
 class LogoutPage extends Component {
   render() {

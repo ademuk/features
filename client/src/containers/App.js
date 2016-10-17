@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import LoginLink from '../components/LoginLink';
-import { loadSession } from '../actions';
+import { loadSession } from '../actions/auth';
 
 import './App.css';
 
@@ -36,7 +36,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-  auth: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired
 };
 
