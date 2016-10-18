@@ -1,7 +1,7 @@
-const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+import process;
 
 export default {
-  baseUrl: 'http://127.0.0.1:8000/api',
+  baseUrl: process.env.API_URL,
 
-  baseWebSocketUrl: wsScheme + '://localhost:8000/api'
+  baseWebSocketUrl: process.env.WEBSOCKET_API_URL
 }
