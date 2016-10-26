@@ -21,7 +21,7 @@ class ProjectsPage extends Component {
   render() {
     const { doesSessionExist, projects } = this.props;
     return (
-      (doesSessionExist && projects.length) ?
+      doesSessionExist ?
         <Projects projects={projects} /> :
         <div></div>
     )

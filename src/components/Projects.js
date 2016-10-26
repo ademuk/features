@@ -11,13 +11,18 @@ const Projects = ({ projects }) => {
     <div>
       <h2>Projects</h2>
       <ol>
-        {projects.map(project => {
-          return (
-            <li key={project.id}>
-              <Link to={getProjectPath(project.id)}>{project.name}</Link>
-            </li>
-          )
-        })}
+        {
+          projects.length ?
+            projects.map(project => {
+              return (
+                <li key={project.id}>
+                  <Link to={getProjectPath(project.id)}>{project.name}</Link>
+                </li>
+              )
+            }) :
+            <div></div>
+        }
+
       </ol>
       <Link to="/new-project">New Project</Link>
     </div>
