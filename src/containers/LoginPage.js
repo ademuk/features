@@ -1,61 +1,32 @@
 import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
-
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import { Form, Button } from 'semantic-ui-react';
 
 import { createSession } from '../actions/auth';
 
 class LoginPage extends Component {
-  constructor(props) {
-    super(props);
+  handleChange = (e, { value }) => this.setState({ value });
 
-    this.state = {
-      username: '',
-      password: ''
-    };
-  }
+  handleSubmit = (e, serializedForm) => {
+    e.preventDefault();
 
-  render() {
-    return (
-      <div>
-        <h2>Login</h2>
-        <form onSubmit={this.handleSubmit}>
-          <ol>
-            <li>
-              <label>
-                <span>Username</span>
-                <input name="username" type="text" placeholder="amigo" value={this.state.username} onChange={this.handleChange} />
-              </label>
-            </li>
-            <li>
-              <label>
-                <span>Password</span>
-                <input name="password" type="password" placeholder="B33d33d33" value={this.state.password} onChange={this.handleChange} />
-              </label>
-            </li>
-            <li>
-              <input type="submit" value="Log-in" />
-            </li>
-          </ol>
-        </form>
-      </div>
-    );
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    this.props.createSession(this.state)
+    this.props.createSession(serializedForm)
       .then(() => {
         browserHistory.push('/');
       });
+  };
+
+  render() {
+    return (
+      <Form onSubmit={this.handleSubmit}>
+        <h2>Login</h2>
+        <Form.Input name="username" label="Username" placeholder="amigo" />
+        <Form.Input name="password" label="Password" type="password" placeholder="B33d33d33" />
+        <Button type="submit" color="teal">Log-in</Button>
+      </Form>
+    );
   }
 }
 

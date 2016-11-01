@@ -2,58 +2,30 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
+import { Form, Button } from 'semantic-ui-react';
 
 import { createProject } from '../actions/projects';
 
 class NewProjectPage extends Component {
 
-  constructor(props) {
-    super(props);
+  handleSubmit = (e, serializedForm) => {
+    e.preventDefault();
 
-    this.state = {
-      name: '',
-      repoUrl: ''
-    }
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <h2>New Project</h2>
-        <ol>
-          <li>
-            <label>
-              <span>Project Name*</span>
-              <input name="name" type="text" placeholder="Project A" value={this.state.name} required onChange={this.handleChange} />
-            </label>
-          </li>
-          <li>
-            <label>
-              <span>Repository URL (Git)</span>
-              <input name="repoUrl" type="text" placeholder="https://user:pass@hostname.com" value={this.state.repoUrl} onChange={this.handleChange} />
-            </label>
-          </li>
-          <li>
-            <input type="submit" value="Add Project" />
-          </li>
-        </ol>
-      </form>
-    )
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    this.props.createProject(this.state)
+    this.props.createProject(serializedForm)
       .then(({ id }) => {
         browserHistory.push(`/project/${id}`);
       });
+  };
+
+  render() {
+    return (
+      <Form onSubmit={this.handleSubmit}>
+        <h2>New Project</h2>
+        <Form.Input name="name" type="text" label="Project Name" placeholder="Project A" required />
+        <Form.Input name="repoUrl" type="text" label="Repository URL (Git)" placeholder="https://user:pass@hostname.com" />
+        <Button type="submit" color="teal">Add Project</Button>
+      </Form>
+    )
   }
 }
 

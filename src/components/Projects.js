@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+import { Button, List } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
 function getProjectPath(id) {
@@ -10,21 +11,21 @@ const Projects = ({ projects }) => {
   return (
     <div>
       <h2>Projects</h2>
-      <ol>
+      <List celled verticalAlign='middle'>
         {
           projects.length ?
             projects.map(project => {
               return (
-                <li key={project.id}>
+                <List.Item key={project.id}>
                   <Link to={getProjectPath(project.id)}>{project.name}</Link>
-                </li>
+                </List.Item>
               )
             }) :
             <div></div>
         }
 
-      </ol>
-      <Link to="/new-project">New Project</Link>
+      </List>
+      <Button as={Link} to="/new-project" color="teal">New Project</Button>
     </div>
   )
 };

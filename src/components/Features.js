@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import { List } from 'semantic-ui-react';
+
 import { Link } from 'react-router';
 
 import './Features.css';
@@ -10,17 +12,15 @@ function getFeaturePath(projectId, id) {
 
 const Features = ({ projectId, features }) => {
   return (
-    <div>
-      <ol>
-        {features.map(feature => {
-          return (
-            <li key={feature.id}>
-              <Link to={getFeaturePath(projectId, feature.id)}>{feature.name}</Link>
-            </li>
-          )
-        })}
-      </ol>
-    </div>
+    <List celled verticalAlign='middle'>
+      {features.map(feature => {
+        return (
+          <List.Item key={feature.id}>
+            <Link to={getFeaturePath(projectId, feature.id)}>{feature.name}</Link>
+          </List.Item>
+        )
+      })}
+    </List>
   )
 };
 

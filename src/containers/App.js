@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { Segment, Container, Menu, Header } from 'semantic-ui-react'
 
 import LoginLink from '../components/LoginLink';
 import { loadSession } from '../actions/auth';
@@ -11,22 +12,22 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Features</h1>
-          <nav>
-            <ol>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
+      <Segment vertical>
+        <Container>
+          <Menu>
+            <Menu.Item header>
+              <Header><Link to="/">Features</Link></Header>
+            </Menu.Item>
+
+            <Menu.Menu position='right'>
+              <Menu.Item>
                 <LoginLink loggedIn={this.props.auth.doesSessionExist} />
-              </li>
-            </ol>
-          </nav>
-        </header>
-        {this.props.children}
-      </div>
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu>
+          {this.props.children}
+        </Container>
+      </Segment>
     );
   }
 
