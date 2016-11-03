@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { Button, List, Menu } from 'semantic-ui-react';
+import { Button, List } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
 function getProjectPath(id) {
@@ -10,14 +10,7 @@ function getProjectPath(id) {
 const Projects = ({ projects }) => {
   return (
     <div>
-      <Menu secondary size="mini">
-        <Menu.Item>
-          <h2>Projects</h2>
-        </Menu.Item>
-        <Menu.Item>
-          <Button as={Link} to="/new-project" color="teal">New Project</Button>
-        </Menu.Item>
-      </Menu>
+      <h2>Projects</h2>
       <List divided relaxed>
         {
           projects.length ?
@@ -32,6 +25,7 @@ const Projects = ({ projects }) => {
         }
 
       </List>
+      <Button as={Link} to="/new-project" color="teal">New Project</Button>
     </div>
   )
 };
