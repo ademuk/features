@@ -4,15 +4,13 @@ import { List } from 'semantic-ui-react';
 
 import { Link } from 'react-router';
 
-import './Features.css';
-
 function getFeaturePath(projectId, id) {
   return `/project/${projectId}/feature/${id}`;
 }
 
 const Features = ({ projectId, features }) => {
   return (
-    <List celled verticalAlign='middle'>
+    <List divided relaxed>
       {features.map(feature => {
         return (
           <List.Item key={feature.id}>

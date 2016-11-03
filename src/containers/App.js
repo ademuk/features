@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Segment, Container, Menu, Header } from 'semantic-ui-react'
@@ -16,7 +15,7 @@ class App extends Component {
         <Container>
           <Menu>
             <Menu.Item header>
-              <Header><Link to="/">Features</Link></Header>
+              <Header as="h1"><Link to="/">Features</Link></Header>
             </Menu.Item>
 
             <Menu.Menu position='right'>

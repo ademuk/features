@@ -1,18 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Form, Button } from 'semantic-ui-react';
+import Formsy from 'formsy-react';
 
+import { FormsyInput } from '../formsy-semantic-ui';
 import { createSession } from '../actions/auth';
 
 class LoginPage extends Component {
-  handleChange = (e, { value }) => this.setState({ value });
 
-  handleSubmit = (e, serializedForm) => {
-    e.preventDefault();
-
-    this.props.createSession(serializedForm)
+  handleSubmit = model => {
+    this.props.createSession(model)
       .then(() => {
         browserHistory.push('/');
       });
@@ -20,10 +18,10 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form as={Formsy.Form} onValidSubmit={this.handleSubmit}>
         <h2>Login</h2>
-        <Form.Input name="username" label="Username" placeholder="amigo" />
-        <Form.Input name="password" label="Password" type="password" placeholder="B33d33d33" />
+        <FormsyInput name="username" label="Username" placeholder="amigo" required />
+        <FormsyInput name="password" label="Password" placeholder="B33d33d33" type="password" required />
         <Button type="submit" color="teal">Log-in</Button>
       </Form>
     );

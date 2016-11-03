@@ -19,7 +19,7 @@ class Feature extends Component {
         <h3>{feature.name}</h3>
         <AceEditor
           value={this.state.body}
-          width="1024px"
+          width="100%"
           minLines={15}
           maxLines={300}
           mode="gherkin"
