@@ -1,6 +1,42 @@
 import React from 'react';
 import Formsy from 'formsy-react';
-import { Form } from 'semantic-ui-react';
+import { Form, Input } from 'semantic-ui-react';
+
+
+export const FormsyField = React.createClass({
+
+  mixins: [Formsy.Mixin],
+
+  getInitialState() {
+    return { value: this.controlledValue() };
+  },
+
+  controlledValue(props = this.props) {
+    return props.value || '';
+  },
+
+  changeValue(event) {
+    this.setState({ value: event.currentTarget.value });
+    this.setValue(event.currentTarget.value);
+  },
+
+  render() {
+    const {
+      validationError,
+      validationErrors,
+      ...nonFormsyProps
+    } = this.props;
+
+    return (
+      <Form.Field {...nonFormsyProps}
+                  value={this.state.value}
+                  onChange={this.changeValue}
+                  required={this.isRequired()}
+                  error={this.isFormSubmitted() && this.showRequired()}>
+      </Form.Field>
+    );
+  }
+});
 
 
 export const FormsyInput = React.createClass({
@@ -21,12 +57,15 @@ export const FormsyInput = React.createClass({
   },
 
   render() {
+    const {
+      validationError,
+      validationErrors,
+      ...nonFormsyProps
+    } = this.props;
+
     return (
-      <Form.Input type={this.props.type}
-                  name={this.props.name}
-                  label={this.props.label}
+      <Form.Input {...nonFormsyProps}
                   value={this.state.value}
-                  placeholder={this.props.placeholder}
                   required={this.isRequired()}
                   error={this.isFormSubmitted() && this.showRequired()}
                   onChange={this.changeValue} />

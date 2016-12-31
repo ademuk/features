@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Input, Select } from 'semantic-ui-react';
 import Formsy from 'formsy-react';
+import { FormsyField, FormsyInput } from '../formsy-semantic-ui';
 
-import { FormsyInput } from '../formsy-semantic-ui';
 import { createProject } from '../actions/projects';
 
+const sshPlaceholder = "[username[:password]@]hostname.com:repo.git";
+
 class NewProjectPage extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      repoType: "ssh",
+      repoUrlPlaceholder: sshPlaceholder
+    };
+  }
 
   handleSubmit = model => {
     this.props.createProject(model)
@@ -16,12 +27,27 @@ class NewProjectPage extends Component {
       });
   };
 
+  handleChange = (e, { value }) => {
+    this.setState({
+      repoUrlPlaceholder: value === "ssh" ? sshPlaceholder : "https://[user[:pass]@]hostname.com"
+    });
+  };
+
   render() {
+    const options = [
+      { text: 'SSH', value: 'ssh' },
+      { text: 'HTTPS', value: 'https' }
+    ];
+
     return (
       <Form as={Formsy.Form} onValidSubmit={this.handleSubmit}>
         <h2>New Project</h2>
-        <FormsyInput name="name" type="text" label="Project Name" placeholder="Project A" required />
-        <FormsyInput name="repoUrl" type="text" label="Repository URL (Git)" placeholder="https://user:pass@hostname.com" />
+        <FormsyField control={Input} name="name" label="Project Name" placeholder="Project A" required />
+        <Form.Group widths='equal'>
+          <Form.Select name="repoType" options={options} label="Repository type" defaultValue="ssh" onChange={this.handleChange} />
+          <FormsyField control={Input} name="repoUrl" label="Repository URL (Git)" placeholder={this.state.repoUrlPlaceholder} required />
+        </Form.Group>
+
         <Button type="submit" color="teal">Add Project</Button>
       </Form>
     )
