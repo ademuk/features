@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Menu, Button, Header } from 'semantic-ui-react';
 
-import { STATUS_ADDING, STATUS_ADDING_ERROR } from '../data/constants';
+import { STATUS_ADDING, STATUS_ADDING_ERROR, STATUS_ADDED } from '../data/constants';
 import ProjectSettings from '../components/ProjectSettings';
 
 
@@ -20,14 +20,20 @@ const Project = ({ project, onImportClick }) => {
         <Menu.Item header>
           <Header as="h2">{project.name}</Header>
         </Menu.Item>
-        <Menu.Menu position='right'>
-          <Menu.Item>
-            <Button onClick={onImportClick}>Import features from repository</Button>
-          </Menu.Item>
-          <Menu.Item>
-            <ProjectSettings project={project} />
-          </Menu.Item>
-        </Menu.Menu>
+        {
+          (project.status === STATUS_ADDED) ?
+            (
+              <Menu.Menu position='right'>
+                <Menu.Item>
+                  <Button onClick={onImportClick}>Import features from repository</Button>
+                </Menu.Item>
+                <Menu.Item>
+                  { project.is_ssh_repo ? <ProjectSettings project={project} /> : <div></div> }
+                </Menu.Item>
+              </Menu.Menu>
+            ) : <div></div>
+        }
+
       </Menu>
       <p>{status}</p>
     </div>
