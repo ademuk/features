@@ -45,7 +45,7 @@ class NewProjectPage extends Component {
         <FormsyField control={Input} name="name" label="Project Name" placeholder="Project A" required />
         <Form.Group widths='equal'>
           <Form.Select name="repoType" options={options} label="Repository type" defaultValue="ssh" onChange={this.handleChange} />
-          <FormsyField control={Input} name="repoUrl" label="Repository URL (Git)" placeholder={this.state.repoUrlPlaceholder} required />
+          <FormsyField control={Input} name="repoUrl" label="Repository URL (Git)" placeholder={this.state.repoUrlPlaceholder} />
         </Form.Group>
 
         <Button type="submit" color="teal">Add Project</Button>

@@ -11,27 +11,8 @@ class ProjectPage extends Component {
 
   componentDidMount() {
     const projectId = this.props.params.projectId;
-    const updateProjectStatus = this.props.updateProjectStatus;
 
-    const wsUrl = `${config.baseWebSocketUrl}/projects/${projectId}/stream/`;
-
-    console.log("Connecting: " + wsUrl);
-
-    this.socket = new WebSocket(wsUrl);
-
-    this.socket.onopen = function () {
-      console.log('Connected to: ' + wsUrl);
-    };
-
-    this.socket.onmessage = function(message) {
-      console.log("Message received: " + message.data);
-
-      const data = JSON.parse(message.data);
-
-      if (data.status) {
-        updateProjectStatus(projectId, data.status);
-      }
-    };
+    this._setupWebSocket(projectId, this.props.updateProjectStatus);
 
     this.props.loadProject(projectId);
   }
@@ -51,6 +32,28 @@ class ProjectPage extends Component {
         <div>{this.props.children}</div>
       </div>
     )
+  }
+
+  _setupWebSocket(projectId, updateProjectStatus) {
+    const wsUrl = `${config.baseWebSocketUrl}/projects/${projectId}/stream/`;
+
+    console.log("Connecting: " + wsUrl);
+
+    this.socket = new WebSocket(wsUrl);
+
+    this.socket.onopen = function () {
+      console.log('Connected to: ' + wsUrl);
+    };
+
+    this.socket.onmessage = function(message) {
+      console.log("Message received: " + message.data);
+
+      const data = JSON.parse(message.data);
+
+      if (data.status) {
+        updateProjectStatus(projectId, data.status);
+      }
+    };
   }
 }
 
