@@ -2,6 +2,7 @@ import api from '../data/api';
 
 export const LOAD_FEATURES_SUCCESS = 'LOAD_FEATURES_SUCCESS';
 export const LOAD_FEATURE_SUCCESS = 'LOAD_FEATURE_SUCCESS';
+export const IMPORT_FEATURES_SUCCESS = 'IMPORT_FEATURES_SUCCESS';
 
 export function loadFeatures(projectId) {
   return dispatch => {
@@ -30,5 +31,18 @@ export function loadFeature(projectId, featureId) {
 
         return response.data;
       });
+  };
+}
+
+export function importFeatures(projectId) {
+  return dispatch => {
+    return api.post(`/projects/${projectId}/features/`)
+      .then(response => {
+        dispatch({
+          type: IMPORT_FEATURES_SUCCESS
+        });
+
+        return response.data;
+      })
   };
 }

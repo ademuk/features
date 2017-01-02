@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import config from '../config';
 import { loadProject, updateProjectStatus } from '../actions/projects';
+import { importFeatures } from '../actions/features';
+
 import Project from '../components/Project';
 
 
@@ -26,13 +28,17 @@ class ProjectPage extends Component {
     return (
       <div>
         {project
-          ? <Project project={project} />
+          ? <Project project={project} onImportClick={this.handleImportClick} />
           : <p>Loading</p>
         }
         <div>{this.props.children}</div>
       </div>
     )
   }
+
+  handleImportClick = () => {
+    this.props.importFeatures(this.props.params.projectId);
+  };
 
   _setupWebSocket(projectId, updateProjectStatus) {
     const wsUrl = `${config.baseWebSocketUrl}/projects/${projectId}/stream/`;
@@ -59,6 +65,7 @@ class ProjectPage extends Component {
 
 ProjectPage.propTypes = {
   loadProject: PropTypes.func.isRequired,
+  importFeatures: PropTypes.func.isRequired,
   project: PropTypes.object
 };
 
@@ -70,5 +77,6 @@ function mapStateToProps(state, ownProps) {
 
 export default connect(mapStateToProps, {
   loadProject,
+  importFeatures,
   updateProjectStatus
 })(ProjectPage);

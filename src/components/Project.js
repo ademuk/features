@@ -5,7 +5,7 @@ import { STATUS_ADDING, STATUS_ADDING_ERROR } from '../data/constants';
 import ProjectSettings from '../components/ProjectSettings';
 
 
-const Project = ({ project }) => {
+const Project = ({ project, onImportClick }) => {
   var status;
 
   if (project.status === STATUS_ADDING) {
@@ -22,6 +22,9 @@ const Project = ({ project }) => {
         </Menu.Item>
         <Menu.Menu position='right'>
           <Menu.Item>
+            <Button onClick={onImportClick}>Import features from repository</Button>
+          </Menu.Item>
+          <Menu.Item>
             <ProjectSettings project={project} />
           </Menu.Item>
         </Menu.Menu>
@@ -32,7 +35,8 @@ const Project = ({ project }) => {
 };
 
 Project.propTypes = {
-  project: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
+  onImportClick: PropTypes.func.isRequired
 };
 
 export default Project;
