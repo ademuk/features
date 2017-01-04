@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { loadFeatures } from '../actions/features';
 import Features from '../components/Features';
-import { STATUS_ADDED } from '../data/constants';
+import { STATUS_IMPORTED, STATUS_IMPORTING } from '../data/constants';
 
 
 class FeaturesPage extends Component {
@@ -17,7 +17,7 @@ class FeaturesPage extends Component {
     const { project } = this.props;
     if (project) {
       const newStatus = props.project.status;
-      if (newStatus !== project.status && newStatus === STATUS_ADDED) {
+      if (newStatus !== project.status && newStatus === STATUS_IMPORTED) {
         this.props.loadFeatures(project.id);
       }
     }
@@ -25,14 +25,9 @@ class FeaturesPage extends Component {
 
   render () {
     const { project, features } = this.props;
-    return (
-      <div>
-        {(project && features)
-          ? <Features projectId={project.id} features={features} />
-          : <p>Loading</p>
-        }
-      </div>
-    )
+    return (project && features)
+      ? (project.status === STATUS_IMPORTING ? null : <Features projectId={project.id} features={features} />)
+      : <p>Loading</p>;
   }
 }
 

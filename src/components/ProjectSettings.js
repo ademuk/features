@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, Icon, Header, Modal } from 'semantic-ui-react';
 
+import './ProjectSettings.css';
 
 class ProjectSettings extends Component {
   state = { modalOpen: false }
@@ -28,7 +29,7 @@ class ProjectSettings extends Component {
         <Modal.Content>
           <Modal.Description>
             <Header>SSH Public Key</Header>
-            <p>Add the following public key to your repository.</p>
+            <p>Add the following public key to your repository so that Features can access it.</p>
             <code>{project.public_key}</code>
           </Modal.Description>
         </Modal.Content>

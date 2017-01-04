@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
 import { Form, Button, Input, Select } from 'semantic-ui-react';
 import Formsy from 'formsy-react';
-import { FormsyField, FormsyInput } from '../formsy-semantic-ui';
+import { FormsyField } from '../formsy-semantic-ui';
 
 import { createProject } from '../actions/projects';
 

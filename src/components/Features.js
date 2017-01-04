@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { List } from 'semantic-ui-react';
+import { List, Segment } from 'semantic-ui-react';
 
 import { Link } from 'react-router';
 
@@ -10,15 +10,22 @@ function getFeaturePath(projectId, id) {
 
 const Features = ({ projectId, features }) => {
   return (
-    <List divided relaxed>
-      {features.map(feature => {
-        return (
-          <List.Item key={feature.id}>
-            <Link to={getFeaturePath(projectId, feature.id)}>{feature.name}</Link>
-          </List.Item>
-        )
-      })}
-    </List>
+    <Segment>
+      {
+        features.length ?
+          (
+            <List divided relaxed>
+              {features.map(feature => {
+                return (
+                  <List.Item key={feature.id}>
+                    <Link to={getFeaturePath(projectId, feature.id)}>{feature.name}</Link>
+                  </List.Item>
+                )
+              })}
+            </List>
+          ) : <p>You don't currently have any features.</p>
+      }
+    </Segment>
   )
 };
 

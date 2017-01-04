@@ -31,7 +31,7 @@ class ProjectPage extends Component {
           ? <Project project={project} onImportClick={this.handleImportClick} />
           : <p>Loading</p>
         }
-        <div>{this.props.children}</div>
+        {this.props.children}
       </div>
     )
   }
