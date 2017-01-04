@@ -7,7 +7,7 @@ import { FormsyField } from '../formsy-semantic-ui';
 
 import { createProject } from '../actions/projects';
 
-const sshPlaceholder = "[username[:password]@]hostname.com:repo.git";
+const sshPlaceholder = "user@hostname.com:repo.git";
 
 class NewProjectPage extends Component {
 
@@ -29,7 +29,7 @@ class NewProjectPage extends Component {
 
   handleChange = (e, { value }) => {
     this.setState({
-      repoUrlPlaceholder: value === "ssh" ? sshPlaceholder : "https://[user[:pass]@]hostname.com"
+      repoUrlPlaceholder: value === "ssh" ? sshPlaceholder : "https://[user:pass@]hostname.com"
     });
   };
 
