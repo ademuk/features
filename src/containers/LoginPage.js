@@ -12,7 +12,7 @@ class LoginPage extends Component {
   handleSubmit = model => {
     this.props.createSession(model)
       .then(() => {
-        browserHistory.push('/');
+        browserHistory.push(this.props.location.query.path || '/');
       });
   };
 

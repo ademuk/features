@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router'
 import { Segment, Container, Menu, Header } from 'semantic-ui-react'
 
 import LoginLink from '../components/LoginLink';
@@ -31,7 +32,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.loadSession();
+    const payload = this.props.loadSession();
+    const path = this.props.location.pathname;
+    const isValidSession = payload && payload.exp > (Date.now() / 1000);
+
+    if (!isValidSession && path !== '/login') {
+      browserHistory.push('/login?path=' + path);
+    }
   }
 }
 
