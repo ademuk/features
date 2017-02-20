@@ -3,6 +3,7 @@ import { Menu, Button, Header, Segment, Dimmer, Loader, Image, Message } from 's
 
 import { STATUS_IMPORTING, STATUS_IMPORT_ERROR, STATUS_IMPORTED } from '../data/constants';
 import ProjectSettings from '../components/ProjectSettings';
+import paragraphImage from '../images/short-paragraph.png'
 
 
 const Project = ({ project, onImportClick }) => {
@@ -14,7 +15,7 @@ const Project = ({ project, onImportClick }) => {
             <Loader inverted>Importing features</Loader>
           </Dimmer>
 
-          <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+          <Image src={paragraphImage} />
         </Segment>
       );
     } else if (status === STATUS_IMPORT_ERROR) {
