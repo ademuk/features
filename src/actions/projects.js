@@ -2,6 +2,7 @@ import api from '../data/api';
 
 export const LOAD_PROJECTS_SUCCESS = 'LOAD_PROJECTS_SUCCESS';
 export const LOAD_PROJECT_SUCCESS = 'LOAD_PROJECT_SUCCESS';
+export const CREATE_PROJECT_REQUEST= 'CREATE_PROJECT_REQUEST';
 export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS';
 export const UPDATE_PROJECT_STATUS = 'UPDATE_PROJECT_STATUS';
 
@@ -39,6 +40,11 @@ export function createProject(project) {
       ...project,
       repo_url: project.repoUrl
     };
+
+    dispatch({
+      type: CREATE_PROJECT_REQUEST
+    });
+
     return api.post('/projects/', payload)
       .then(response => {
         dispatch({

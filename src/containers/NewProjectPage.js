@@ -39,6 +39,8 @@ class NewProjectPage extends Component {
       { text: 'HTTPS', value: 'https' }
     ];
 
+    const { isCreatingProject } = this.props.projects;
+
     return (
       <Form as={Formsy.Form} onValidSubmit={this.handleSubmit}>
         <h2>New Project</h2>
@@ -48,7 +50,7 @@ class NewProjectPage extends Component {
           <FormsyField control={Input} name="repoUrl" label="Repository URL (Git)" placeholder={this.state.repoUrlPlaceholder} />
         </Form.Group>
 
-        <Button type="submit" color="teal">Add Project</Button>
+        <Button type="submit" color="teal" loading={isCreatingProject}>Add Project</Button>
       </Form>
     )
   }

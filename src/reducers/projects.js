@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { LOAD_PROJECTS_SUCCESS, LOAD_PROJECT_SUCCESS, CREATE_PROJECT_SUCCESS, UPDATE_PROJECT_STATUS } from '../actions/projects';
+import { LOAD_PROJECTS_SUCCESS, LOAD_PROJECT_SUCCESS, CREATE_PROJECT_REQUEST, CREATE_PROJECT_SUCCESS, UPDATE_PROJECT_STATUS } from '../actions/projects';
 import { DESTROY_SESSION_SUCCESS } from '../actions/auth';
 
 function byId(state = {}, action) {
@@ -39,7 +39,20 @@ function list(state = [], action) {
   }
 }
 
+function isCreatingProject(state = false, action) {
+  switch (action.type) {
+    case CREATE_PROJECT_REQUEST:
+      return true;
+    case CREATE_PROJECT_SUCCESS:
+    case UPDATE_PROJECT_STATUS:
+      return false;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   byId,
-  list
+  list,
+  isCreatingProject
 });
