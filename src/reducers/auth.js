@@ -13,6 +13,20 @@ function doesSessionExist(state = false, action) {
   }
 }
 
+function user(state = false, action) {
+  switch (action.type) {
+    case CREATE_SESSION_SUCCESS:
+      return {
+        isStaff: action.session.is_staff
+      };
+    case DESTROY_SESSION_SUCCESS:
+      return null;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
-  doesSessionExist
+  doesSessionExist,
+  user
 });

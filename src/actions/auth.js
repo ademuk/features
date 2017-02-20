@@ -9,7 +9,8 @@ export function loadSession() {
     const isValidSession = payload && payload.exp > (Date.now() / 1000);
 
     dispatch({
-      type: isValidSession ? CREATE_SESSION_SUCCESS : DESTROY_SESSION_SUCCESS
+      type: isValidSession ? CREATE_SESSION_SUCCESS : DESTROY_SESSION_SUCCESS,
+      session: payload
     });
 
     return payload;
@@ -22,8 +23,11 @@ export function createSession(credentials) {
       .then(function (response) {
         api.setToken(response.data.token);
 
+        const payload = api.getTokenPayload();
+
         dispatch({
-          type: CREATE_SESSION_SUCCESS
+          type: CREATE_SESSION_SUCCESS,
+          session: payload
         });
 
         return response.data;

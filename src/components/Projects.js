@@ -7,7 +7,7 @@ function getProjectPath(id) {
   return `/project/${id}`;
 }
 
-const Projects = ({ projects }) => {
+const Projects = ({ user, projects }) => {
   return (
     <div>
       <h2>Projects</h2>
@@ -26,13 +26,14 @@ const Projects = ({ projects }) => {
           }
 
         </List>
-        <Button as={Link} to="/new-project" color="teal">New Project</Button>
+        { user.isStaff ? <Button as={Link} to="/new-project" color="teal">New Project</Button> : null }
       </Segment>
     </div>
   )
 };
 
 Projects.propTypes = {
+  user: PropTypes.object.isRequired,
   projects: PropTypes.array.isRequired
 };
 

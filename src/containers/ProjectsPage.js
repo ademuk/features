@@ -22,7 +22,7 @@ class ProjectsPage extends Component {
     const { doesSessionExist, projects } = this.props;
     return (
       doesSessionExist ?
-        <Projects projects={projects} /> :
+        <Projects projects={projects} user={this.props.user} /> :
         <div></div>
     )
   }
@@ -36,7 +36,8 @@ ProjectsPage.propTypes = {
 function mapStateToProps(state) {
   return {
     projects: state.projects.list,
-    doesSessionExist: state.auth.doesSessionExist
+    doesSessionExist: state.auth.doesSessionExist,
+    user: state.auth.user
   };
 }
 
