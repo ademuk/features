@@ -25,11 +25,11 @@ class ProjectPage extends Component {
   }
 
   render() {
-    const { project } = this.props;
+    const { user, project } = this.props;
     return (
       <div>
         {project
-          ? <Project project={project} onImportClick={this.handleImportClick} />
+          ? <Project project={project} user={user} onImportClick={this.handleImportClick} />
           : <CenteredLoader />
         }
         {this.props.children}
@@ -72,7 +72,8 @@ ProjectPage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    project: state.projects.byId[ownProps.params.projectId]
+    project: state.projects.byId[ownProps.params.projectId],
+    user: state.auth.user
   };
 }
 

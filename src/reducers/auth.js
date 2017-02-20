@@ -13,14 +13,14 @@ function doesSessionExist(state = false, action) {
   }
 }
 
-function user(state = false, action) {
+function user(state = {}, action) {
   switch (action.type) {
     case CREATE_SESSION_SUCCESS:
       return {
         isStaff: action.session.is_staff
       };
     case DESTROY_SESSION_SUCCESS:
-      return null;
+      return {};
     default:
       return state;
   }

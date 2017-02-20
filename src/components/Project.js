@@ -6,7 +6,7 @@ import ProjectSettings from '../components/ProjectSettings';
 import paragraphImage from '../images/short-paragraph.png'
 
 
-const Project = ({ project, onImportClick }) => {
+const Project = ({ user, project, onImportClick }) => {
   function ProjectMessage({ status }) {
     if (status === STATUS_IMPORTING) {
       return (
@@ -46,9 +46,9 @@ const Project = ({ project, onImportClick }) => {
                   <Menu.Item>
                     <Button onClick={onImportClick} disabled={project.status === STATUS_IMPORTED}>Import features from repository</Button>
                   </Menu.Item>
-                  <Menu.Item>
-                    <ProjectSettings project={project} />
-                  </Menu.Item>
+                  {user.isStaff ? <Menu.Item>
+                                    <ProjectSettings project={project} />
+                                  </Menu.Item> : null }
                 </Menu.Menu>
               )
             : <span></span>
@@ -60,6 +60,7 @@ const Project = ({ project, onImportClick }) => {
 };
 
 Project.propTypes = {
+  user: PropTypes.object.isRequired,
   project: PropTypes.object.isRequired,
   onImportClick: PropTypes.func.isRequired
 };
