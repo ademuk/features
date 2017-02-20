@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { CREATE_SESSION_SUCCESS, DESTROY_SESSION_SUCCESS } from '../actions/auth';
+import { CREATE_SESSION_REQUEST, CREATE_SESSION_SUCCESS, DESTROY_SESSION_SUCCESS } from '../actions/auth';
 
 function doesSessionExist(state = false, action) {
   switch (action.type) {
@@ -26,7 +26,20 @@ function user(state = false, action) {
   }
 }
 
+function isLoggingIn(state = false, action) {
+  switch (action.type) {
+    case CREATE_SESSION_REQUEST:
+      return true;
+    case CREATE_SESSION_SUCCESS:
+    case DESTROY_SESSION_SUCCESS:
+      return false;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   doesSessionExist,
-  user
+  user,
+  isLoggingIn
 });

@@ -17,22 +17,25 @@ class LoginPage extends Component {
   };
 
   render() {
+    const { auth: { isLoggingIn } } = this.props;
     return (
       <Form as={Formsy.Form} onValidSubmit={this.handleSubmit}>
         <h2>Login</h2>
         <FormsyField control={Input} name="username" label="Username" placeholder="amigo" required />
         <FormsyField control={Input} name="password" label="Password" placeholder="B33d33d33" type="password" required />
-        <Button type="submit" color="teal">Log-in</Button>
+        <Button type="submit" color="teal" loading={isLoggingIn}>Log-in</Button>
       </Form>
     );
   }
 }
 
 LoginPage.propTypes = {
-  createSession: PropTypes.func.isRequired
+  createSession: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
+  console.log(state);
   return state;
 }
 
