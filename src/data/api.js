@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router'
-var jwtDecode = require('jwt-decode');
+import jwtDecode from 'jwt-decode';
 
 import config from '../config';
 

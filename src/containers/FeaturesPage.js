@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
+import { Segment } from 'semantic-ui-react';
 
 import { loadFeatures } from '../actions/features';
 import Features from '../components/Features';
+import CenteredLoader from '../components/CenteredLoader';
 import { STATUS_IMPORTED, STATUS_IMPORTING } from '../data/constants';
 
 
@@ -27,7 +29,9 @@ class FeaturesPage extends Component {
     const { project, features } = this.props;
     return (project && features)
       ? (project.status === STATUS_IMPORTING ? null : <Features projectId={project.id} features={features} />)
-      : <p>Loading</p>;
+      : <Segment>
+          <CenteredLoader />
+        </Segment>;
   }
 }
 
