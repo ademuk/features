@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router'
+var jwtDecode = require('jwt-decode');
 
 import config from '../config';
 
@@ -7,6 +8,14 @@ const baseUrl = config.baseUrl;
 
 const getToken = () => {
   return localStorage.getItem('jwt');
+};
+
+const getTokenPayload = () => {
+  const token = getToken();
+
+  if (token) {
+    return jwtDecode(token);
+  }
 };
 
 const getConfig = function () {
@@ -28,6 +37,8 @@ export default {
   },
 
   getToken: getToken,
+
+  getTokenPayload: getTokenPayload,
 
   setToken: (token) => {
     localStorage.setItem('jwt', token);
