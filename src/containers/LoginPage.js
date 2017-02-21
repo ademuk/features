@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { Form, Button, Input } from 'semantic-ui-react';
+import { Form, Button, Input, Message } from 'semantic-ui-react';
 import Formsy from 'formsy-react';
 
 import { FormsyField } from '../formsy-semantic-ui';
@@ -17,12 +17,19 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { auth: { isLoggingIn } } = this.props;
+    const { auth: { isLoggingIn, isLogInError } } = this.props;
+
     return (
       <Form as={Formsy.Form} onValidSubmit={this.handleSubmit}>
         <h2>Login</h2>
-        <FormsyField control={Input} name="username" label="Username" placeholder="amigo" required />
-        <FormsyField control={Input} name="password" label="Password" placeholder="B33d33d33" type="password" required />
+
+        <Message negative hidden={!isLogInError}>
+          <Message.Header>There was a problem logging you in</Message.Header>
+          <p>Please check your credentials and try again</p>
+        </Message>
+
+        <FormsyField control={Input} name="username" label="Username" required />
+        <FormsyField control={Input} name="password" label="Password" type="password" required />
         <Button type="submit" color="teal" loading={isLoggingIn}>Log-in</Button>
       </Form>
     );

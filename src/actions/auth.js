@@ -2,6 +2,7 @@ import api from '../data/api';
 
 export const CREATE_SESSION_REQUEST = 'CREATE_SESSION_REQUEST';
 export const CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
+export const CREATE_SESSION_FAILED = 'CREATE_SESSION_FAILED';
 export const DESTROY_SESSION_SUCCESS = 'DESTROY_SESSION_SUCCESS';
 
 export function loadSession() {
@@ -26,7 +27,7 @@ export function createSession(credentials) {
     });
 
     return api.post('/sessions/', credentials)
-      .then(function (response) {
+      .then(response => {
         api.setToken(response.data.token);
 
         const payload = api.getTokenPayload();
@@ -37,6 +38,17 @@ export function createSession(credentials) {
         });
 
         return response.data;
+      })
+      .catch(() => {
+        dispatch({
+          type: CREATE_SESSION_FAILED
+        });
+
+        dispatch({
+          type: DESTROY_SESSION_SUCCESS
+        });
+
+        return Promise.reject();
       });
   };
 }
