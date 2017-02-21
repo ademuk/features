@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Feature from '../components/Feature';
+import LoaderParagraph from '../components/LoaderParagraph';
 
 import { loadFeature } from '../actions/features';
 
@@ -18,7 +19,7 @@ class FeaturePage extends Component {
     return (
       <div>
         {!feature
-          ? <p>Loading</p>
+          ? <LoaderParagraph text="Loading Feature" />
           : <Feature feature={feature} />
         }
       </div>

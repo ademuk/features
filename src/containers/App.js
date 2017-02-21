@@ -5,15 +5,20 @@ import { browserHistory } from 'react-router'
 import { Segment, Container, Menu, Header } from 'semantic-ui-react'
 
 import LoginLink from '../components/LoginLink';
+import ImagePreloader from '../components/ImagePreloader';
 import { loadSession } from '../actions/auth';
 
 import './App.css';
+
+import paragraphImage from '../images/short-paragraph.png';
+
 
 class App extends Component {
   render() {
     return (
       <Segment vertical>
         <Container>
+          <ImagePreloader src={[paragraphImage]} />
           <Menu>
             <Menu.Item header>
               <Header as="h1"><Link to="/">Features</Link></Header>

@@ -5,7 +5,7 @@ import { Segment } from 'semantic-ui-react';
 
 import { loadFeatures } from '../actions/features';
 import Features from '../components/Features';
-import CenteredLoader from '../components/CenteredLoader';
+import LoaderCentered from '../components/LoaderCentered';
 import { STATUS_IMPORTED, STATUS_IMPORTING } from '../data/constants';
 
 
@@ -30,7 +30,7 @@ class FeaturesPage extends Component {
     return (project && features)
       ? (project.status === STATUS_IMPORTING ? null : <Features projectId={project.id} features={features} />)
       : <Segment>
-          <CenteredLoader />
+          <LoaderCentered />
         </Segment>;
   }
 }

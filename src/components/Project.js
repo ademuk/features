@@ -1,23 +1,15 @@
 import React, { PropTypes } from 'react';
-import { Menu, Button, Header, Segment, Dimmer, Loader, Image, Message } from 'semantic-ui-react';
+import { Menu, Button, Header, Message } from 'semantic-ui-react';
 
 import { STATUS_IMPORTING, STATUS_IMPORT_ERROR, STATUS_IMPORTED } from '../data/constants';
 import ProjectSettings from '../components/ProjectSettings';
-import paragraphImage from '../images/short-paragraph.png'
+import LoaderParagraph from '../components/LoaderParagraph';
 
 
 const Project = ({ user, project, onImportClick }) => {
   function ProjectMessage({ status }) {
     if (status === STATUS_IMPORTING) {
-      return (
-        <Segment>
-          <Dimmer active inverted>
-            <Loader inverted>Importing features</Loader>
-          </Dimmer>
-
-          <Image src={paragraphImage} />
-        </Segment>
-      );
+      return <LoaderParagraph text="Importing Project" inverted={true} />;
     } else if (status === STATUS_IMPORT_ERROR) {
       return (
         <Message

@@ -7,7 +7,7 @@ import { loadProject, updateProjectStatus } from '../actions/projects';
 import { importFeatures } from '../actions/features';
 
 import Project from '../components/Project';
-import CenteredLoader from '../components/CenteredLoader';
+import LoaderCentered from '../components/LoaderCentered';
 
 
 class ProjectPage extends Component {
@@ -30,7 +30,7 @@ class ProjectPage extends Component {
       <div>
         {project
           ? <Project project={project} user={user} onImportClick={this.handleImportClick} />
-          : <CenteredLoader />
+          : <LoaderCentered />
         }
         {this.props.children}
       </div>

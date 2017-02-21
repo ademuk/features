@@ -2,9 +2,8 @@ import React from 'react';
 
 import { Loader } from 'semantic-ui-react';
 
-const CenteredLoader = () => {
+const LoaderCentered = () => {
   return <Loader active inline='centered' />
 };
 
-export default CenteredLoader;
-
+export default LoaderCentered;
