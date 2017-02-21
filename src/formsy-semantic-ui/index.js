@@ -22,7 +22,9 @@ export const FormsyField = React.createClass({
 
   render() {
     const {
+      // eslint-disable-next-line
       validationError,
+      // eslint-disable-next-line
       validationErrors,
       ...nonFormsyProps
     } = this.props;
@@ -58,7 +60,9 @@ export const FormsyInput = React.createClass({
 
   render() {
     const {
+      // eslint-disable-next-line
       validationError,
+      // eslint-disable-next-line
       validationErrors,
       ...nonFormsyProps
     } = this.props;
