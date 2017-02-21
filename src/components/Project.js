@@ -22,7 +22,7 @@ const Project = ({ user, project, onImportClick }) => {
         />
       );
     }
-    return <span></span>;
+    return null;
   }
 
   return (
@@ -43,7 +43,7 @@ const Project = ({ user, project, onImportClick }) => {
                                   </Menu.Item> : null }
                 </Menu.Menu>
               )
-            : <span></span>
+            : null
         }
       </Menu>
       <ProjectMessage status={project.status} />
