@@ -36,7 +36,7 @@ const Project = ({ user, project, onImportClick }) => {
             ? (
                 <Menu.Menu position='right'>
                   <Menu.Item>
-                    <Button onClick={onImportClick} disabled={project.status === STATUS_IMPORTED}>Import features from repository</Button>
+                    <Button onClick={onImportClick}>{ project.status === STATUS_IMPORTED ? "Re-import" : "import" } features from repository</Button>
                   </Menu.Item>
                   {user.isStaff ? <Menu.Item>
                                     <ProjectSettings project={project} />
