@@ -5,12 +5,6 @@ import 'brace/mode/gherkin';
 import 'brace/theme/monokai';
 
 class Feature extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      body: props.feature.body
-    };
-  }
 
   render() {
     const { feature } = this.props;
@@ -18,7 +12,7 @@ class Feature extends Component {
       <div>
         <h3>{feature.name}</h3>
         <AceEditor
-          value={this.state.body}
+          value={feature.body}
           width="100%"
           minLines={15}
           maxLines={300}
