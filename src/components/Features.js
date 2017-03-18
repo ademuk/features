@@ -30,7 +30,7 @@ const Features = ({ projectId, features }) => {
 };
 
 Features.propTypes = {
-  projectId: PropTypes.number.isRequired,
+  projectId: PropTypes.string.isRequired,
   features: PropTypes.array.isRequired
 };
 
