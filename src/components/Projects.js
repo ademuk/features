@@ -37,8 +37,7 @@ const Projects = ({ user, projects }) => {
                     <Link to={getProjectPath(project.id)}>{project.name}</Link>
                   </List.Item>
                 )
-              }) :
-              <div></div>
+              }) : <p>You don't currently have any projects.</p>
           }
 
         </List>
