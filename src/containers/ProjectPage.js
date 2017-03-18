@@ -44,17 +44,9 @@ class ProjectPage extends Component {
   _setupWebSocket(projectId, updateProjectStatus) {
     const wsUrl = `${config.baseWebSocketUrl}/projects/${projectId}/stream/`;
 
-    console.log("Connecting: " + wsUrl);
-
     this.socket = new WebSocket(wsUrl);
 
-    this.socket.onopen = function () {
-      console.log('Connected to: ' + wsUrl);
-    };
-
     this.socket.onmessage = function(message) {
-      console.log("Message received: " + message.data);
-
       const data = JSON.parse(message.data);
 
       if (data.status) {
