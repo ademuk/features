@@ -1,12 +1,13 @@
 # Features (client)
 
 * Features is a BDD collaboration tool bringing technical and non-technical people together to work on Scenarios.
+* Created by [Adem Gaygusuz](https://adem.io).
 
 ## Features... so meta
 
-* Auto import of feature files from Git (SSH or https)
-* View feature files with auto Gherkin colour highlighting
-* Multiple project support per user
+* Auto import of feature files from Git (SSH or https).
+* View feature files with auto Gherkin colour highlighting.
+* Multiple project support per user.
 
 ### Screenshots
 
