@@ -8,6 +8,14 @@
 * View feature files with auto Gherkin colour highlighting
 * Multiple project support per user
 
+### Screenshots
+
+#### Auto import
+<img src="https://github.com/ademuk/features/raw/master/screenshots/auto-import.png" alt="Auto import screenshot" width="500">
+
+#### Gherkin highlighting
+<img src="https://github.com/ademuk/features/raw/master/screenshots/gherkin-highlighting.png" alt="Gherkin highlighting screenshot" width="500">
+
 ## Technologies
 * [React 15.x](https://facebook.github.io/react/)
 * [Redux](http://redux.js.org/)
