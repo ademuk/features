@@ -23,6 +23,7 @@
 * WebSockets
 * [React Router 3.x](https://reacttraining.com/react-router/) - Looking to move to the new declarative v4 soon
 * [Semantic UI](https://react.semantic-ui.com/introduction)
+* [hightlight.js](https://highlightjs.org/)
 * [Axios](https://github.com/mzabriskie/axios)
 * [Formsy React](https://github.com/christianalfoni/formsy-react)
 
