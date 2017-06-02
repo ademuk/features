@@ -2,6 +2,7 @@
 
 * Features is a BDD collaboration tool bringing technical and non-technical people together to work on Scenarios
 * Created by [Adem Gaygusuz](https://adem.io)
+* See my [Blog post](https://adem.io/posts/2017/05/30/introducing-features-a-bdd-tool/)
 
 ## Features... so meta
 
