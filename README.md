@@ -21,7 +21,7 @@
 * [React 15.x](https://facebook.github.io/react/)
 * [Redux](http://redux.js.org/)
 * WebSockets
-* [React Router 3.x](https://reacttraining.com/react-router/)
+* [React Router 3.x](https://reacttraining.com/react-router/) - Looking to move to the new declarative v4 soon
 * [Semantic UI](https://react.semantic-ui.com/introduction)
 * [Axios](https://github.com/mzabriskie/axios)
 * [Formsy React](https://github.com/christianalfoni/formsy-react)
